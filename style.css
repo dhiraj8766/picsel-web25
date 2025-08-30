@@ -1,0 +1,129 @@
+/* Navbar Custom */
+.custom-navbar {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(12px);
+  padding: 12px 0;
+  transition: background 0.3s ease;
+}
+
+.custom-navbar.scrolled {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.brand-logo {
+  font-size: 28px;
+  font-weight: bold;
+  color: #00f5ff !important;
+  text-shadow: 0 0 8px #00f5ff;
+}
+
+.nav-link {
+  color: #fff !important;
+  margin-left: 20px;
+  position: relative;
+  transition: 0.3s;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  left: 0;
+  bottom: -4px;
+  background: #00f5ff;
+  transition: 0.4s;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+/* Hero Section */
+.hero-section {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  color: #fff;
+  background: linear-gradient(135deg, #0d0d25, #1a1a40);
+  overflow: hidden;
+}
+
+/* Dark overlay */
+.hero-section .overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-title {
+  font-size: 60px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-shadow: 0 0 20px #00f5ff, 0 0 40px #0077ff;
+}
+
+.hero-title span {
+  color: #00f5ff;
+}
+
+.hero-subtitle {
+  font-size: 20px;
+  margin-top: 15px;
+  color: #ddd;
+  letter-spacing: 1px;
+}
+
+.btn-glow {
+  margin-top: 25px;
+  padding: 12px 30px;
+  border-radius: 30px;
+  background: #00f5ff;
+  color: #000;
+  font-weight: bold;
+  transition: 0.3s;
+  box-shadow: 0 0 15px #00f5ff;
+}
+
+.btn-glow:hover {
+  background: #0077ff;
+  color: #fff;
+  box-shadow: 0 0 25px #0077ff, 0 0 50px #00f5ff;
+}
+
+/* Scroll Down Icon */
+.scroll-down {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.scroll-down span {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00f5ff;
+  animation: bounce 1.5s infinite;
+}
+
+.scroll-down span:nth-child(2) { animation-delay: 0.2s; }
+.scroll-down span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes bounce {
+  0%, 80%, 100% { transform: translateY(0); opacity: 0.5; }
+  40% { transform: translateY(8px); opacity: 1; }
+}
