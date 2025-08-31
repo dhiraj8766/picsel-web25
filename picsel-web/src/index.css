@@ -1,0 +1,18 @@
+/* src/index.css */
+
+/* --- Global Styles & CSS Variables --- */
+:root {
+  --primary-color: #0a0a0a; /* Dark background */
+  --secondary-color: #f0f0f0; /* Light text */
+  --accent-color: #4a90e2; /* A nice blue for links/highlights */
+  --card-bg: #1a1a1a; /* Darker card background */
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

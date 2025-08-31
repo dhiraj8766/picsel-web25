@@ -1,0 +1,25 @@
+/* src/components/Footer.css */
+
+.footer {
+  text-align: center;
+  padding: 2rem;
+  margin-top: 2rem;
+  background-color: var(--card-bg);
+  border-top: 1px solid #333;
+  color: #aaa;
+}
+
+.social-links {
+  margin-top: 1rem;
+}
+
+.social-links a {
+  margin: 0 0.75rem;
+  color: #aaa;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+.social-links a:hover {
+  color: var(--accent-color);
+}

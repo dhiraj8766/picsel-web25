@@ -1,0 +1,36 @@
+/* src/components/TeamMemberCard.css */
+
+.team-member-card {
+  background-color: var(--card-bg);
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: transform 0.2s ease-in-out;
+}
+
+.team-member-card:hover {
+  transform: scale(1.05);
+}
+
+.member-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%; /* Makes the image round */
+  object-fit: cover;
+  border: 3px solid var(--accent-color);
+  margin-bottom: 1rem;
+}
+
+.member-name {
+  margin-top: 0;
+  margin-bottom: 0.25rem;
+  font-size: 1.25rem;
+  color: var(--secondary-color);
+}
+
+.member-role {
+  margin: 0;
+  color: #aaa;
+  font-style: italic;
+}

@@ -1,0 +1,134 @@
+/* --- src/pages/HomePage.css --- */
+
+:root {
+    --dark-navy: #0a192f;
+    --accent-cyan: #64ffda;
+    --lightest-slate: #ccd6f6;
+    --slate: #8892b0;
+    --font-mono: 'Roboto Mono', monospace;
+    --font-sans: 'Inter', sans-serif;
+    --border-radius: 4px;
+}
+
+.home-page {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    background-color: var(--dark-navy);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2; /* Ensures content is above the 3D canvas */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 0 10%;
+    color: #fff;
+}
+
+.hero-title {
+    font-family: var(--font-sans);
+    font-size: clamp(40px, 8vw, 80px);
+    font-weight: 900;
+    color: var(--lightest-slate);
+    margin: 0;
+    position: relative;
+    animation: glitch-skew 1s infinite linear alternate-reverse;
+}
+
+/* Glitch Effect */
+.hero-title::before,
+.hero-title::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--dark-navy);
+    overflow: hidden;
+}
+
+.hero-title::before {
+    left: 2px;
+    text-shadow: -2px 0 var(--accent-cyan);
+    clip-path: inset(50% 0 50% 0);
+    animation: glitch-anim-1 2s infinite linear alternate-reverse;
+}
+
+.hero-title::after {
+    left: -2px;
+    text-shadow: -2px 0 #ff00c1, 2px 2px var(--accent-cyan);
+    clip-path: inset(50% 0 50% 0);
+    animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-skew {
+    0% { transform: skewX(0deg); }
+    5% { transform: skewX(0.5deg); }
+    10% { transform: skewX(-0.5deg); }
+    15% { transform: skewX(0); }
+    100% { transform: skewX(0); }
+}
+
+@keyframes glitch-anim-1 {
+    0% { clip-path: inset(50% 0 50% 0); }
+    20% { clip-path: inset(10% 0 55% 0); }
+    40% { clip-path: inset(70% 0 5% 0); }
+    60% { clip-path: inset(40% 0 40% 0); }
+    80% { clip-path: inset(85% 0 10% 0); }
+    100% { clip-path: inset(25% 0 65% 0); }
+}
+
+@keyframes glitch-anim-2 {
+    0% { clip-path: inset(60% 0 30% 0); }
+    20% { clip-path: inset(90% 0 5% 0); }
+    40% { clip-path: inset(30% 0 60% 0); }
+    60% { clip-path: inset(5% 0 80% 0); }
+    80% { clip-path: inset(55% 0 10% 0); }
+    100% { clip-path: inset(40% 0 15% 0); }
+}
+
+.hero-subtitle {
+    font-family: var(--font-mono);
+    font-size: 1.25rem;
+    color: var(--slate);
+    margin: 1rem 0 2rem 0;
+    min-height: 1.5em; /* Prevent layout shift during typing */
+}
+
+.typing-cursor {
+    display: inline-block;
+    width: 10px;
+    height: 1.25rem;
+    background-color: var(--accent-cyan);
+    animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.hero-button {
+    font-family: var(--font-mono);
+    color: var(--accent-cyan);
+    background-color: transparent;
+    border: 1px solid var(--accent-cyan);
+    border-radius: var(--border-radius);
+    padding: 1rem 1.75rem;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.hero-button:hover {
+    background-color: rgba(100, 255, 218, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(100, 255, 218, 0.2);
+}

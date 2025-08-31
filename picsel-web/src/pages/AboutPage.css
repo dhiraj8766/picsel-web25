@@ -1,0 +1,22 @@
+/* src/pages/AboutPage.css */
+
+/* Uses .page-container and .page-title from EventsPage.css for consistency */
+
+.about-content {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: var(--card-bg);
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid #333;
+}
+
+.about-content p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+.about-content p:last-child {
+  margin-bottom: 0;
+}

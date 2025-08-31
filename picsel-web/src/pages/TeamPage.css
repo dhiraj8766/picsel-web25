@@ -1,0 +1,10 @@
+/* src/pages/TeamPage.css */
+
+/* Uses .page-container and .page-title from EventsPage.css for consistency */
+
+.team-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}

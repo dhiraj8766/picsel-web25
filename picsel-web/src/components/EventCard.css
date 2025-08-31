@@ -1,0 +1,32 @@
+/* src/components/EventCard.css */
+
+.event-card {
+  background-color: var(--card-bg);
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.event-title {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--accent-color);
+  font-size: 1.5rem;
+}
+
+.event-details {
+  margin: 0.5rem 0;
+  color: #ccc;
+}
+
+.event-description {
+  margin-top: 1rem;
+  color: #aaa;
+}

@@ -1,0 +1,105 @@
+/* src/components/Preloader.css */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    color: white;
+    animation: backgroundColorFade 5s forwards;
+}
+
+@keyframes backgroundColorFade {
+    0% { background-color: #f0f0f0; } /* Starts with a light background */
+    20% { background-color: #333031; } /* Fades to your new color */
+    80% { background-color: #333031; } /* Holds your new color */
+    100% { background-color: transparent; } /* Fades out to reveal the site */
+}
+
+.video-container {
+    position: absolute;
+    width: 200px;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    transform: scale(0.10);
+}
+
+/* Position the first video window (top left) */
+.video-container-1 {
+    top: 20%;
+    left: 15%;
+    animation: videoFade 2.5s 0.5s forwards; /* Increased duration slightly */
+}
+
+/* Position the second video window (bottom right) */
+.video-container-2 {
+    bottom: 20%;
+    right: 15%;
+    /* This is the only line that changed */
+    animation: videoFade 2.5s 1.5s forwards; /* Start 1 second after the first */
+}
+
+.preloader-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@keyframes videoFade {
+    0% { opacity: 0; transform: scale(0.95); }
+    20% { opacity: 0.8; transform: scale(1); } /* Fade In */
+    80% { opacity: 0.8; transform: scale(1); } /* Hold */
+    100% { opacity: 0; transform: scale(0.95); }  /* Fade Out */
+}
+
+.preloader-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    animation: contentFade 5s forwards;
+}
+
+@keyframes contentFade {
+    0% { opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.preloader-logo {
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    font-size: 4rem;
+    letter-spacing: 0.5rem;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.preloader-greeting {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1.5rem;
+    margin: 1rem 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.preloader-divider {
+    width: 80px;
+    height: 2px;
+    background-color: #64ffda;
+    margin: 1.5rem auto;
+}
+
+.preloader-department {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+}
