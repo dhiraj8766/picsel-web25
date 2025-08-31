@@ -1,6 +1,6 @@
 import React from 'react';
 import EventCard from '../components/EventCard';
-import eventsData from '../data/events.json'; // Import the data
+import eventsData from '../data/events.json'; 
 import './EventsPage.css';
 
 const EventsPage = () => {
@@ -8,7 +8,7 @@ const EventsPage = () => {
     <div className="page-container">
       <h1 className="page-title">Upcoming Events</h1>
       <div className="events-grid">
-        {eventsData.map((event) => (
+        {eventsData.map((event) => ( 
           <EventCard
             key={event.id}
             title={event.title}

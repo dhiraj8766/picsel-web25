@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import ThreeDBackground from '../components/ThreeDBackground'; // Import the new 3D component
-import './HomePage.css'; // Import the new CSS
+import ThreeDBackground from '../components/ThreeDBackground';
+import './HomePage.css';
 
 const HomePage = () => {
     const [subtitle, setSubtitle] = useState('');
@@ -28,7 +28,7 @@ const HomePage = () => {
             }
 
             if (!isDeleting && currentText === currentPhrase) {
-                typeSpeed = 2000; // Pause at the end of a phrase
+                typeSpeed = 2000;
                 isDeleting = true;
             } else if (isDeleting && currentText === '') {
                 isDeleting = false;
@@ -57,6 +57,21 @@ const HomePage = () => {
                 <Link to="/events" className="hero-button">
                     Explore Events
                 </Link>
+            </section>
+
+            {/* ADDED: Placeholder content to make the page scrollable */}
+            <section className="placeholder-section">
+                <h2>About Our Club</h2>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.
+                </p>
+            </section>
+
+            <section className="placeholder-section">
+                <h2>Our Mission</h2>
+                <p>
+                    Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor.
+                </p>
             </section>
         </div>
     );
