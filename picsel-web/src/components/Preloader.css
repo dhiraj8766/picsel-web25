@@ -1,4 +1,4 @@
-/* src/components/Preloader.css */
+
 .preloader {
     position: fixed;
     top: 0;
@@ -14,10 +14,10 @@
 }
 
 @keyframes backgroundColorFade {
-    0% { background-color: #f0f0f0; } /* Starts with a light background */
-    20% { background-color: #333031; } /* Fades to your new color */
-    80% { background-color: #333031; } /* Holds your new color */
-    100% { background-color: transparent; } /* Fades out to reveal the site */
+    0% { background-color: #f0f0f0; }
+    20% { background-color: #333031; } 
+    80% { background-color: #333031; } 
+    100% { background-color: transparent; } 
 }
 
 .video-container {
@@ -31,19 +31,18 @@
     transform: scale(0.10);
 }
 
-/* Position the first video window (top left) */
 .video-container-1 {
     top: 20%;
     left: 15%;
-    animation: videoFade 2.5s 0.5s forwards; /* Increased duration slightly */
+    animation: videoFade 2.5s 0.5s forwards; 
 }
 
-/* Position the second video window (bottom right) */
+
 .video-container-2 {
     bottom: 20%;
     right: 15%;
-    /* This is the only line that changed */
-    animation: videoFade 2.5s 1.5s forwards; /* Start 1 second after the first */
+    
+    animation: videoFade 2.5s 1.5s forwards;
 }
 
 .preloader-video {
@@ -54,9 +53,9 @@
 
 @keyframes videoFade {
     0% { opacity: 0; transform: scale(0.95); }
-    20% { opacity: 0.8; transform: scale(1); } /* Fade In */
-    80% { opacity: 0.8; transform: scale(1); } /* Hold */
-    100% { opacity: 0; transform: scale(0.95); }  /* Fade Out */
+    20% { opacity: 0.8; transform: scale(1); } 
+    80% { opacity: 0.8; transform: scale(1); } 
+    100% { opacity: 0; transform: scale(0.95); } 
 }
 
 .preloader-content {

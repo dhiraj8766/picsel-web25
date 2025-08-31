@@ -1,6 +1,4 @@
-/* src/components/Navbar.css */
 
-/* --- Wrapper to handle positioning and hover trigger --- */
 .navbar-wrapper {
     position: fixed;
     top: 20px;
@@ -9,7 +7,6 @@
     z-index: 1000;
 }
 
-/* --- Main Container Styling --- */
 .navbar-container {
     position: relative;
     display: flex;
@@ -23,7 +20,6 @@
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
-/* ✨ New animated glowing border effect */
 .navbar-container::before {
     content: '';
     position: absolute;
@@ -48,18 +44,16 @@
 }
 
 
-/* --- EXPANDED STATE --- */
 .navbar-container.open {
     padding: 8px;
     border-color: rgba(255, 255, 255, 0.25);
 }
 
 .navbar-container.open::before {
-    opacity: 0.3; /* Reveal the glow on hover */
+    opacity: 0.3; 
 }
 
 
-/* --- Logo Styling --- */
 .nav-logo {
     font-family: 'Inter', sans-serif;
     font-weight: 700;
@@ -73,7 +67,6 @@
 }
 
 
-/* --- Nav Links Container (Hidden by default) --- */
 .nav-links {
     position: relative;
     list-style: none;
@@ -121,7 +114,6 @@
 }
 
 
-/* --- The Bubble Highlighter --- */
 .nav-bubble {
     position: absolute;
     top: 0;
@@ -138,10 +130,9 @@
 }
 
 
-/* --- ✨ NEW Dropdown Panel --- */
 .dropdown-panel {
     position: absolute;
-    top: calc(100% + 15px); /* Position below the navbar with a 15px gap */
+    top: calc(100% + 15px); 
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -153,7 +144,6 @@
     border-radius: 12px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     
-    /* Hide by default */
     opacity: 0;
     visibility: hidden;
     transform: translateX(-50%) translateY(-10px) scale(0.95);

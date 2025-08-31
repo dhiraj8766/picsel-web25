@@ -1,6 +1,6 @@
 import React from 'react';
 import TeamMemberCard from '../components/TeamMemberCard';
-import teamData from '../data/team.json'; // Import the data
+import teamData from '../data/team.json';
 import './TeamPage.css';
 
 const TeamPage = () => {

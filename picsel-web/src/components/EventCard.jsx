@@ -1,5 +1,5 @@
 import React from 'react';
-import './EventCard.css'; // <-- Import the CSS file here
+import './EventCard.css';
 
 const EventCard = ({ title, date, location, description }) => {
   return (

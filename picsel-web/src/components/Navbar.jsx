@@ -4,7 +4,7 @@ import './Navbar.css';
 
 const Navbar = () => {
     const [isNavOpen, setIsNavOpen] = useState(false);
-    const [openDropdown, setOpenDropdown] = useState(null); // Will store 'Events' or 'About'
+    const [openDropdown, setOpenDropdown] = useState(null); 
     const navLinksRef = useRef(null);
     const bubbleRef = useRef(null);
 
@@ -47,7 +47,6 @@ const Navbar = () => {
         }
     };
     
-    // Position bubble when nav opens
     useEffect(() => {
         if (isNavOpen) {
             const timer = setTimeout(resetBubble, 50);
@@ -60,7 +59,6 @@ const Navbar = () => {
         setOpenDropdown(null);
     }
     
-    // Find the content for the currently open dropdown
     const currentDropdownContent = menuItems.find(item => item.name === openDropdown)?.dropdown || [];
 
     return (
@@ -90,7 +88,7 @@ const Navbar = () => {
                     ))}
                 </ul>
             </nav>
-            {/* Dropdown panel is now outside the nav bar for centered positioning */}
+            {}
             <div className={`dropdown-panel ${openDropdown ? 'visible' : ''}`}>
                 {currentDropdownContent.map((dropdownItem) => (
                     <Link to={dropdownItem.path} key={dropdownItem.name} className="dropdown-link">
