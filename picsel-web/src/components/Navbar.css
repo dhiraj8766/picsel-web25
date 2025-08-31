@@ -1,4 +1,4 @@
-
+/* src/components/Navbar.css */
 .navbar-wrapper {
     position: fixed;
     top: 20px;
@@ -43,16 +43,13 @@
     100% { --gradient-angle: 360deg; }
 }
 
-
 .navbar-container.open {
     padding: 8px;
     border-color: rgba(255, 255, 255, 0.25);
 }
-
 .navbar-container.open::before {
-    opacity: 0.3; 
+    opacity: 0.3;
 }
-
 
 .nav-logo {
     font-family: 'Inter', sans-serif;
@@ -65,7 +62,6 @@
     transition: all 0.4s ease;
     text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
 }
-
 
 .nav-links {
     position: relative;
@@ -113,7 +109,6 @@
     text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
 }
 
-
 .nav-bubble {
     position: absolute;
     top: 0;
@@ -129,20 +124,19 @@
     transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-
+/* --- ✨ IMPROVED Dropdown Panel --- */
 .dropdown-panel {
     position: absolute;
-    top: calc(100% + 15px); 
+    top: calc(100% + 15px);
     left: 50%;
+    width: 300px; /* Fixed width for better layout */
     transform: translateX(-50%);
-    display: flex;
-    gap: 10px;
-    padding: 10px;
-    background-color: rgba(20, 20, 22, 0.8);
-    backdrop-filter: blur(12px);
+    padding: 15px 20px;
+    background-color: rgba(20, 20, 22, 0.85); /* Slightly more opaque */
+    backdrop-filter: blur(16px) saturate(180%);
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
     
     opacity: 0;
     visibility: hidden;
@@ -156,15 +150,44 @@
     transform: translateX(-50%) translateY(0) scale(1);
 }
 
+/* ✨ New heading for dropdown content */
+.dropdown-heading {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #6c778b;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 0 0 10px 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dropdown-links-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
 .dropdown-link {
-    padding: 10px 20px;
+    padding: 10px;
     white-space: nowrap;
     border-radius: 8px;
     color: #b0b0b0;
     text-decoration: none;
     font-size: 1rem;
     font-weight: 500;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    /* ✨ Staggered animation setup */
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    transition-delay: calc(0.05s * var(--delay-index));
+}
+
+/* ✨ Staggered animation reveal */
+.dropdown-panel.visible .dropdown-link {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .dropdown-link:hover {

@@ -1,12 +1,14 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import './Navbar.css';
 
 const Navbar = () => {
     const [isNavOpen, setIsNavOpen] = useState(false);
-    const [openDropdown, setOpenDropdown] = useState(null); 
+    const [openDropdown, setOpenDropdown] = useState(null);
     const navLinksRef = useRef(null);
     const bubbleRef = useRef(null);
+    const leaveTimeoutRef = useRef(null); // Ref to hold the timer
 
     const menuItems = [
         { name: "Home", path: "/" },
@@ -16,7 +18,7 @@ const Navbar = () => {
             { name: "Successful Events", path: "/events/successful" }
           ]
         },
-        { name: "About", path: "/about",
+        { name: "Options", path: "/about",
           dropdown: [
             { name: "About Us", path: "/about" },
             { name: "Learn More", path: "/about/learn-more" },
@@ -54,18 +56,25 @@ const Navbar = () => {
         }
     }, [isNavOpen]);
 
-    const handleWrapperMouseLeave = () => {
-        setIsNavOpen(false);
-        setOpenDropdown(null);
-    }
+    const handleMouseEnter = () => {
+        clearTimeout(leaveTimeoutRef.current);
+        setIsNavOpen(true);
+    };
+
+    const handleMouseLeave = () => {
+        leaveTimeoutRef.current = setTimeout(() => {
+            setIsNavOpen(false);
+            setOpenDropdown(null);
+        }, 200);
+    };
     
     const currentDropdownContent = menuItems.find(item => item.name === openDropdown)?.dropdown || [];
 
     return (
         <div 
             className="navbar-wrapper"
-            onMouseEnter={() => setIsNavOpen(true)}
-            onMouseLeave={handleWrapperMouseLeave}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
         >
             <nav className={`navbar-container ${isNavOpen ? 'open' : ''}`}>
                 <Link to="/" className="nav-logo">
@@ -88,13 +97,20 @@ const Navbar = () => {
                     ))}
                 </ul>
             </nav>
-            {}
             <div className={`dropdown-panel ${openDropdown ? 'visible' : ''}`}>
-                {currentDropdownContent.map((dropdownItem) => (
-                    <Link to={dropdownItem.path} key={dropdownItem.name} className="dropdown-link">
-                        {dropdownItem.name}
-                    </Link>
-                ))}
+                <h3 className="dropdown-heading">{openDropdown}</h3>
+                <div className="dropdown-links-container">
+                    {currentDropdownContent.map((dropdownItem, index) => (
+                        <Link 
+                            to={dropdownItem.path} 
+                            key={dropdownItem.name} 
+                            className="dropdown-link"
+                            style={{ '--delay-index': index }}
+                        >
+                            {dropdownItem.name}
+                        </Link>
+                    ))}
+                </div>
             </div>
         </div>
     );
