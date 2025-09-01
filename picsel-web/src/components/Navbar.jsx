@@ -3,10 +3,19 @@ import { NavLink, Link } from 'react-router-dom';
 import ScrambleText from './ScrambleText';
 import './Navbar.css';
 
+// A simple chevron icon component for the accordion
+const ChevronIcon = ({ isOpen }) => (
+    <svg className={`submenu-indicator ${isOpen ? 'open' : ''}`} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+);
+
+
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [activeDropdown, setActiveDropdown] = useState(null);
-    const [isDesktop, setIsDesktop] = useState(window.innerWidth > 768); // State to track viewport size
+    const [isDesktop, setIsDesktop] = useState(window.innerWidth > 768);
+    const [openMobileSubmenu, setOpenMobileSubmenu] = useState(null); // <-- NEW: State for mobile accordion
     const navRef = useRef(null);
     const leaveTimeoutRef = useRef(null);
 
@@ -32,7 +41,6 @@ const Navbar = () => {
         { name: "Team", path: "/team" },
     ];
     
-    // --- NEW: Effect to check screen size ---
     useEffect(() => {
         const handleResize = () => {
             setIsDesktop(window.innerWidth > 768);
@@ -41,23 +49,13 @@ const Navbar = () => {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    // --- NEW: Smarter scroll-lock effect ---
     useEffect(() => {
-        // Only lock scroll if we are on a desktop AND a dropdown is active
         const shouldLockScroll = isDesktop && activeDropdown !== null;
-
-        if (shouldLockScroll) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'auto';
-        }
-
-        // Cleanup function to ensure scrolling is re-enabled
+        document.body.style.overflow = shouldLockScroll ? 'hidden' : 'auto';
         return () => {
             document.body.style.overflow = 'auto';
         };
-    }, [isDesktop, activeDropdown]); // This effect runs when the view changes or a dropdown opens/closes
-
+    }, [isDesktop, activeDropdown]);
 
     const handleMouseEnter = (itemName) => {
         clearTimeout(leaveTimeoutRef.current);
@@ -79,8 +77,16 @@ const Navbar = () => {
         setIsMenuOpen(prev => !prev);
     };
 
+    // --- NEW: Function to toggle mobile submenus ---
+    const handleSubmenuToggle = (itemName) => {
+        setOpenMobileSubmenu(prev => (prev === itemName ? null : itemName));
+    };
+
     useEffect(() => {
-        if (!isMenuOpen) setActiveDropdown(null);
+        if (!isMenuOpen) {
+            setActiveDropdown(null);
+            setOpenMobileSubmenu(null); // Reset submenu on main menu close
+        }
     }, [isMenuOpen]);
     
     const currentDropdownData = menuItems.find(item => item.name === activeDropdown)?.dropdown;
@@ -136,24 +142,47 @@ const Navbar = () => {
                 )}
             </div>
 
-            <div className="nav-mobile-overlay">
+            {/* --- vvvv MOBILE MENU LOGIC UPDATED vvvv --- */}
+            {isMenuOpen && <div className="nav-mobile-backdrop" onClick={toggleMenu}></div>}
+            
+            <div className="nav-mobile-menu">
                 <div className="nav-mobile-header">
                      <Link to="/" className="nav-logo" onClick={() => setIsMenuOpen(false)}>
-                        <span className="logo-main">PICSEL</span>
-                        <span className="logo-sub">CLUB</span>
-                    </Link>
+                         <span className="logo-main">PICSEL</span>
+                         <span className="logo-sub">KDKCE</span>
+                     </Link>
                     <button className="nav-mobile-close-btn" onClick={toggleMenu} aria-label="Close menu">
-                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                     </button>
                 </div>
                 <ul className="nav-links-mobile">
-                     {menuItems.map((item, index) => (
-                        <li key={item.name} style={{ transitionDelay: `${0.15 + index * 0.05}s` }}>
-                            <NavLink to={item.path} end onClick={toggleMenu}>{item.name}</NavLink>
+                    {menuItems.map((item) => (
+                        <li key={item.name}>
+                            {item.dropdown ? (
+                                <>
+                                    <div className="mobile-menu-trigger" onClick={() => handleSubmenuToggle(item.name)}>
+                                        <span>{item.name}</span>
+                                        <ChevronIcon isOpen={openMobileSubmenu === item.name} />
+                                    </div>
+                                    <ul className={`mobile-submenu ${openMobileSubmenu === item.name ? 'open' : ''}`}>
+                                        {item.dropdown.map((subItem) => (
+                                            <li key={subItem.name}>
+                                                <NavLink to={subItem.path} onClick={toggleMenu}>
+                                                    {subItem.name}
+                                                </NavLink>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </>
+                            ) : (
+                                <NavLink to={item.path} end onClick={toggleMenu}>{item.name}</NavLink>
+                            )}
                         </li>
                     ))}
                 </ul>
             </div>
+             {/* --- ^^^^ MOBILE MENU LOGIC UPDATED ^^^^ --- */}
+
         </header>
     );
 };

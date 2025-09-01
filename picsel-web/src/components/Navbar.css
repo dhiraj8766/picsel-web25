@@ -37,64 +37,118 @@
 }
 .hamburger-btn svg { width: 28px; height: 28px; }
 
-/* IMPROVED Mobile Menu Overlay */
-.nav-mobile-overlay {
+
+/* --- vvvv IMPROVED MOBILE MENU (SLIDE-IN FROM LEFT) vvvv --- */
+
+.nav-mobile-backdrop {
     position: fixed;
     top: 0; left: 0;
-    width: 100%;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
+    z-index: 102; /* Sits behind the menu panel */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+.navbar-header.menu-is-open .nav-mobile-backdrop {
+    opacity: 1;
+    visibility: visible;
+}
+
+.nav-mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+    max-width: 85vw;
     height: 100vh;
-    background: rgba(10, 10, 10, 0.8);
-    backdrop-filter: blur(16px) saturate(180%);
-    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background: #121212;
+    z-index: 103; /* On top of everything */
     
     display: flex;
     flex-direction: column;
     padding: 20px;
     
-    opacity: 0;
-    visibility: hidden;
-    transform: translateX(30px);
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    transform: translateX(-100%);
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 }
-.navbar-header.menu-is-open .nav-mobile-overlay {
-    opacity: 1;
-    visibility: visible;
+.navbar-header.menu-is-open .nav-mobile-menu {
     transform: translateX(0);
 }
+
 .nav-mobile-header {
-    display: flex; justify-content: space-between; align-items: center;
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px;
 }
 .nav-mobile-close-btn {
     background: transparent; border: none; color: white; cursor: pointer; padding: 5px;
 }
 
-/* IMPROVED Mobile Links & Animation */
 .nav-links-mobile {
-    list-style: none; padding: 0; margin: auto 0;
-    display: flex; flex-direction: column; align-items: center; gap: 15px;
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column;
+    overflow-y: auto;
 }
-.nav-links-mobile li {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.4s ease, transform 0.4s ease;
-}
-.navbar-header.menu-is-open .nav-links-mobile li {
-    opacity: 1;
-    transform: translateY(0);
-}
-.nav-links-mobile li a {
-    color: #b0b0b0; text-decoration: none;
-    font-size: 1.75rem;
+
+/* Styling for both top-level links and trigger buttons */
+.nav-links-mobile > li > a,
+.nav-links-mobile > li > .mobile-menu-trigger {
+    color: #b0b0b0;
+    text-decoration: none;
+    font-size: 1.25rem;
     font-weight: 500;
-    padding: 10px;
+    padding: 15px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     transition: color 0.3s ease;
+    cursor: pointer;
 }
-.nav-links-mobile li a:hover, .nav-links-mobile li a.active {
+.nav-links-mobile > li > a:hover,
+.nav-links-mobile > li > .mobile-menu-trigger:hover {
     color: white;
 }
+.nav-links-mobile > li > a.active {
+    color: white;
+}
+.submenu-indicator {
+    transition: transform 0.3s ease;
+}
+.submenu-indicator.open {
+    transform: rotate(90deg);
+}
+
+/* Accordion Submenu styles */
+.mobile-submenu {
+    list-style: none;
+    padding-left: 20px;
+    margin: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+}
+.mobile-submenu.open {
+    max-height: 300px; /* Adjust if you have more items */
+}
+.mobile-submenu li a {
+    color: #888;
+    text-decoration: none;
+    display: block;
+    padding: 12px 10px;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+.mobile-submenu li a:hover,
+.mobile-submenu li a.active {
+    color: #ddd;
+}
+
+/* --- ^^^^ END OF IMPROVED MOBILE MENU ^^^^ --- */
+
 
 /* --- Desktop Dropdown Panel --- */
 .dropdown-panel {
+    /* ... (rest of your CSS is unchanged) ... */
     display: none;
     position: fixed;
     top: 90px;
@@ -160,7 +214,7 @@
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
         transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
     }
-    .hamburger-btn, .nav-mobile-overlay { display: none; }
+    .hamburger-btn, .nav-mobile-menu, .nav-mobile-backdrop { display: none; } /* Hide mobile elements on desktop */
     .nav-desktop { display: flex; align-items: center; }
     .menu-toggle-btn {
         font-family: 'Inter', sans-serif; background-color: transparent; color: white;
