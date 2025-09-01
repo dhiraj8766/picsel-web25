@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import ThreeDBackground from '../components/ThreeDBackground';
 import './HomePage.css';
+import SpinningLogo from '../components/SpinningLogo'; 
+import ThreeDBackground from '../components/ThreeDBackground'; // ✨ Restored this import
 
 const HomePage = () => {
     const [subtitle, setSubtitle] = useState('');
@@ -45,7 +46,7 @@ const HomePage = () => {
 
     return (
         <div className="home-page">
-            <ThreeDBackground />
+            <ThreeDBackground /> {/* ✨ Added the component back */}
             <section className="hero-content">
                 <h1 className="hero-title" data-text="Picsel Club">
                     Picsel Club
@@ -59,7 +60,6 @@ const HomePage = () => {
                 </Link>
             </section>
 
-            {/* ADDED: Placeholder content to make the page scrollable */}
             <section className="placeholder-section">
                 <h2>About Our Club</h2>
                 <p>
@@ -73,6 +73,8 @@ const HomePage = () => {
                     Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor.
                 </p>
             </section>
+            
+            <SpinningLogo />
         </div>
     );
 };

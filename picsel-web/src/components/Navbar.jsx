@@ -90,7 +90,7 @@ const Navbar = () => {
             <div className="navbar-container">
                 <Link to="/" className="nav-logo" onClick={() => setIsMenuOpen(false)}>
                     <span className="logo-main">PICSEL</span>
-                    <span className="logo-sub">CLUB</span>
+                    <span className="logo-sub">KDKCE</span>
                 </Link>
 
                 <nav className="nav-desktop" onMouseLeave={handleMouseLeave}>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { AudioProvider } from './context/AudioContext'; // ✨ Import the AudioProvider
 
 // Import all your pages and components
 import HomePage from './pages/HomePage';
@@ -8,18 +9,17 @@ import AboutPage from './pages/AboutPage';
 import TeamPage from './pages/TeamPage';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import Preloader from './components/Preloader'; // Import the new preloader
+import Preloader from './components/Preloader';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Hide the preloader after the animation completes (5 seconds)
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 5000); // This duration should match your CSS animation
+    }, 5000); 
 
-    return () => clearTimeout(timer); // Cleanup timer
+    return () => clearTimeout(timer);
   }, []);
 
   // Show the preloader while isLoading is true
@@ -27,20 +27,22 @@ function App() {
     return <Preloader />;
   }
 
-  // Otherwise, show the main website
+  // Otherwise, show the main website, wrapped in the AudioProvider
   return (
-    <div className="App">
-      <Navbar />
-      <main className="main-content">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/events" element={<EventsPage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/team" element={<TeamPage />} />
-        </Routes>
-      </main>
-      <Footer />
-    </div>
+    <AudioProvider> {/* ✨ Wrap the entire app */}
+      <div className="App">
+        <Navbar />
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/events" element={<EventsPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/team" element={<TeamPage />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </AudioProvider>
   );
 }
 
