@@ -1,0 +1,302 @@
+/* --- CONTAINER --- */
+.team-home-section {
+    position: relative;
+    background-color: #050505;
+    color: #fff;
+    padding: 5rem 2rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+}
+
+.team-home-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60vw;
+    height: 60vh;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.th-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+    z-index: 2;
+}
+
+.th-subtitle {
+    display: block;
+    color: #3b82f6;
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+
+.th-title {
+    font-size: 3rem;
+    font-weight: 400;
+    font-family: 'Playfair Display', serif;
+    margin: 0;
+}
+
+/* --- CAROUSEL STAGE --- */
+.th-carousel {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    height: 500px; /* Fixed height for absolute cards */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+    perspective: 1000px;
+}
+
+/* --- CARD BASE --- */
+.th-card {
+    position: absolute;
+    top: 50%;
+    left: 50%; /* Start perfectly centered */
+    width: 320px;
+    background: rgba(25, 25, 25, 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    border-radius: 20px;
+    padding: 2.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+
+    /* SUPER SMOOTH TRANSITION */
+    /* We animate transform (movement/scale) and opacity */
+    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), 
+                opacity 0.8s ease, 
+                filter 0.8s ease;
+}
+
+/* --- STATES --- */
+
+/* 1. CENTER (Active) */
+.slot-center {
+    z-index: 10;
+    /* Translate -50% -50% centers it on the top/left anchor */
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    filter: blur(0px);
+    border-color: rgba(59, 130, 246, 0.4);
+}
+
+/* 2. LEFT (Previous) */
+.slot-left {
+    z-index: 5;
+    /* Move LEFT by -140% of its own width */
+    transform: translate(-140%, -50%) scale(0.85) rotateY(15deg);
+    opacity: 0.4;
+    filter: blur(2px) grayscale(60%);
+}
+
+.slot-left:hover {
+    opacity: 0.6;
+    filter: blur(0px) grayscale(20%);
+}
+
+/* 3. RIGHT (Next) */
+.slot-right {
+    z-index: 5;
+    /* Move RIGHT by 40% (since we start at -50%, adding 90% essentially) */
+    transform: translate(40%, -50%) scale(0.85) rotateY(-15deg);
+    opacity: 0.4;
+    filter: blur(2px) grayscale(60%);
+}
+
+.slot-right:hover {
+    opacity: 0.6;
+    filter: blur(0px) grayscale(20%);
+}
+
+/* 4. HIDDEN (The Stack) */
+.slot-hidden {
+    z-index: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+}
+
+/* --- IMAGE --- */
+.th-img-wrapper {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    border: 3px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    transition: border-color 0.5s ease;
+}
+
+.slot-center .th-img-wrapper {
+    border-color: #3b82f6;
+    box-shadow: 0 0 25px rgba(59, 130, 246, 0.25);
+}
+
+.th-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* --- CONTENT --- */
+.th-content {
+    width: 100%;
+    transition: opacity 0.5s ease;
+}
+
+/* Hide content on side cards to prevent clutter */
+.slot-left .th-content, 
+.slot-right .th-content,
+.slot-hidden .th-content {
+    opacity: 0;
+}
+
+.th-name {
+    font-size: 1.75rem;
+    font-family: 'Playfair Display', serif;
+    margin: 0 0 8px 0;
+    color: #fff;
+}
+
+.th-role {
+    font-size: 0.8rem;
+    color: #3b82f6;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.th-desc {
+    font-size: 0.9rem;
+    color: #aaa;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* --- SOCIALS --- */
+.th-socials {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.th-icon {
+    color: #888;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+}
+
+.th-icon:hover {
+    background: #3b82f6;
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+/* --- CONTROLS --- */
+.th-controls {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    z-index: 10;
+}
+
+.th-dots {
+    display: flex;
+    gap: 10px;
+}
+
+.th-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #333;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.th-dot.active {
+    background: #3b82f6;
+    transform: scale(1.4);
+}
+
+.th-btn {
+    padding: 12px 35px;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 50px;
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    background: transparent;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.th-btn::after {
+    content: '→';
+    font-size: 1.1rem;
+    transition: transform 0.3s;
+}
+
+.th-btn:hover {
+    background: #fff;
+    color: #000;
+    border-color: #fff;
+}
+
+.th-btn:hover::after {
+    transform: translateX(4px);
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    .th-carousel {
+        height: 450px;
+    }
+    .th-card {
+        width: 280px;
+    }
+    .slot-left {
+        transform: translate(-120%, -50%) scale(0.75);
+    }
+    .slot-right {
+        transform: translate(20%, -50%) scale(0.75);
+    }
+}

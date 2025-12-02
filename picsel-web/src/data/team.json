@@ -1,8 +1,60 @@
 [
   {
     "id": 1,
-    "name": "Person1",
-    "role": "President",
-    "imageUrl": "https://placehold.co/400x400/4a90e2/ffffff?text=AS"
+    "name": "Arjun Sharma",
+    "role": "President & Lead Organizer",
+    "description": "Leads the PICSEL vision, manages operations, and coordinates with all departments.",
+    "imageUrl": "../assets/teamimg/sc.jpg",
+    "socials": {
+      "linkedin": "https://linkedin.com/in/username",
+      "instagram": "https://instagram.com/username",
+      "twitter": "https://x.com/username"
+    }
+  },
+  {
+    "id": 2,
+    "name": "Priya Patel",
+    "role": "Technical Head",
+    "description": "Handles tech development, oversees project execution, and mentors technical teams.",
+    "imageUrl": "../assets/teamimg/sc.jpg",
+    "socials": {
+      "linkedin": "https://linkedin.com/in/username",
+      "github": "https://github.com/username"
+    }
+  },
+  {
+    "id": 3,
+    "name": "Rohan Mehta",
+    "role": "Creative Director",
+    "description": "Designs the visual identity, manages creative media, and ensures brand consistency.",
+    "imageUrl": "../assets/teamimg/sc.jpg",
+    "socials": {
+      "instagram": "https://instagram.com/username",
+      "website": "https://portfolio.com"
+    }
+  }
+  ,
+  {
+    "id": 4,
+    "name": "Rohan Mehta",
+    "role": "Creative Director",
+    "description": "Designs the visual identity, manages creative media, and ensures brand consistency.",
+    "imageUrl": "../assets/teamimg/sc.jpg",
+    "socials": {
+      "instagram": "https://instagram.com/username",
+      "website": "https://portfolio.com"
+    }
+  }
+  ,
+  {
+    "id": 5,
+    "name": "Rohan Mehta",
+    "role": "Creative Director",
+    "description": "Designs the visual identity, manages creative media, and ensures brand consistency.",
+    "imageUrl": "../assets/teamimg/sc.jpg",
+    "socials": {
+      "instagram": "https://instagram.com/username",
+      "website": "https://portfolio.com"
+    }
   }
 ]

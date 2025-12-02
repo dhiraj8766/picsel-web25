@@ -1,32 +1,47 @@
+/* ... Keep previous styles ... */
 
-
-.event-card {
-  background-color: var(--card-bg);
-  border: 1px solid #333;
-  border-radius: 8px;
-  padding: 1.5rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+/* Header row to fit the "Completed" badge */
+.header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.event-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+/* Status Badge */
+.status-badge {
+    font-size: 0.65rem;
+    background: #333;
+    color: #888;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
-.event-title {
-  margin-top: 0;
-  margin-bottom: 1rem;
-  color: var(--accent-color);
-  font-size: 1.5rem;
+/* --- THE GREYED OUT LOOK --- */
+.event-card.past-event {
+    opacity: 0.5; /* Fade it out */
+    border-color: #1a1a1a;
+    background: transparent;
+    filter: grayscale(100%); /* Remove all color (makes blue text grey) */
 }
 
-.event-details {
-  margin: 0.5rem 0;
-  color: #ccc;
+.event-card.past-event:hover {
+    /* Disable the hover effects for past events */
+    transform: none;
+    background: transparent;
+    border-color: #1a1a1a;
+    opacity: 0.7; /* Slight brighten on hover so it's readable */
 }
 
-.event-description {
-  margin-top: 1rem;
-  color: #aaa;
+/* Change the dot color for past events */
+.event-card.past-event::before {
+    background: #333;
+    border-color: #222;
+}
+
+.event-card.past-event:hover::before {
+    box-shadow: none;
+    background: #333;
+    border-color: #222;
 }

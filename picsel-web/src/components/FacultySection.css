@@ -1,0 +1,282 @@
+.faculty-section {
+    width: 100%;
+    background-color: #050505;
+    padding: 6rem 5%;
+    color: #fff;
+    border-top: 1px solid #111;
+    overflow: hidden;
+}
+
+.faculty-container {
+    max-width: 1000px; /* Tighter width for focus */
+    margin: 0 auto;
+}
+
+/* --- HEADER --- */
+.faculty-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.faculty-header .sub-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    color: #f59e0b; /* Golden Amber */
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.faculty-header .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: #fff;
+    margin: 0;
+}
+
+/* --- SLIDER WRAPPER --- */
+.faculty-slider-wrapper {
+    position: relative;
+    height: 350px; /* Fixed height for the container */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- SLIDE STYLES --- */
+.faculty-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* Default state: pushed slightly to the right */
+    transform: translateX(50px) scale(0.95);
+    pointer-events: none; /* Prevent clicking hidden slides */
+}
+
+/* 1. ACTIVE SLIDE (Visible) */
+.activeSlide {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    z-index: 10;
+    pointer-events: all;
+}
+
+/* 2. LAST SLIDE (Leaving) */
+.lastSlide {
+    opacity: 0;
+    transform: translateX(-50px) scale(0.95);
+    z-index: 5;
+}
+
+/* 3. NEXT SLIDE (Waiting) */
+.nextSlide {
+    opacity: 0;
+    transform: translateX(50px) scale(0.95);
+    z-index: 1;
+}
+
+/* --- THE CARD DESIGN --- */
+.faculty-content-box {
+    background: #0a0a0a;
+    border: 1px solid #222;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 800px;
+    height: 100%;
+    display: flex;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+/* Left: Image */
+.fac-image-box {
+    width: 40%;
+    height: 100%;
+    position: relative;
+}
+
+.fac-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(20%); /* Artistic touch */
+    transition: filter 0.5s;
+}
+
+.activeSlide:hover .fac-img {
+    filter: grayscale(0%); /* Full color on hover */
+}
+
+/* Right: Text */
+.fac-text-box {
+    width: 60%;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+/* Decorative Gold Line on the right side */
+.fac-text-box::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    bottom: 20px;
+    right: 20px;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, #f59e0b, transparent);
+    opacity: 0.3;
+}
+
+.fac-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: #fff;
+    margin: 0;
+}
+
+.fac-role {
+    font-family: 'Inter', sans-serif;
+    color: #f59e0b; /* Gold text */
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 5px;
+}
+
+.fac-divider {
+    width: 40px;
+    height: 2px;
+    background: #333;
+    margin: 1.5rem 0;
+}
+
+.fac-message {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #ccc;
+    font-style: italic;
+}
+
+/* --- PROGRESS BAR --- */
+.slider-progress-bar {
+    position: absolute;
+    bottom: -30px;
+    width: 200px;
+    height: 2px;
+    background: #222;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #f59e0b;
+    width: 0%;
+    /* Keyframe animation to fill bar over 4 seconds */
+    animation: fillBar 4s linear infinite;
+}
+
+@keyframes fillBar {
+    0% { width: 0%; }
+    100% { width: 100%; }
+}
+/* --- MOBILE RESPONSIVENESS (PREMIUM FIX) --- */
+@media (max-width: 768px) {
+    
+    /* 1. Adjust the Wrapper Height */
+    /* Needs to be taller because Image + Text are now stacked vertically */
+    .faculty-slider-wrapper {
+        height: 600px; 
+        margin-bottom: 2rem;
+    }
+
+    /* 2. Stack Content Vertically */
+    .faculty-content-box {
+        flex-direction: column;
+        max-width: 340px; /* Limits width for a sleek phone look */
+        border-radius: 20px; /* More rounded corners */
+        box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+
+    /* 3. Image Styling */
+    .fac-image-box {
+        width: 100%;
+        height: 300px; /* Fixed height for image area */
+        position: relative;
+    }
+
+    /* Add a gradient fade at the bottom of the image so it blends into text */
+    .fac-image-box::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 60px;
+        background: linear-gradient(to bottom, transparent, #0a0a0a);
+    }
+
+    .fac-img {
+        /* Ensure the face is always centered */
+        object-position: top center; 
+    }
+
+    /* 4. Text Styling */
+    .fac-text-box {
+        width: 100%;
+        height: auto;
+        padding: 1.5rem; /* Slightly less padding */
+        text-align: center;
+        align-items: center;
+        background: #0a0a0a;
+    }
+
+    /* Remove the right-side gold line on mobile (it looks weird vertically) */
+    .fac-text-box::before {
+        display: none;
+    }
+
+    /* 5. Typography Adjustments */
+    .fac-name {
+        font-size: 1.75rem;
+    }
+
+    .fac-role {
+        font-size: 0.8rem;
+        margin-bottom: 5px;
+    }
+
+    .fac-divider {
+        width: 30px;
+        margin: 1rem 0;
+    }
+
+    .fac-message {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        /* Limit text to 3 lines to prevent overflow */
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    /* 6. Fix Progress Bar Position */
+    .slider-progress-bar {
+        bottom: -20px;
+        width: 150px;
+    }
+}

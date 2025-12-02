@@ -1,82 +1,99 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './HomePage.css';
-import SpinningLogo from '../components/SpinningLogo'; 
-import ThreeDBackground from '../components/ThreeDBackground'; // ✨ Restored this import
+
+import VisionSection from '../components/VisionSection';
+import TeamHome from '../components/TeamHome';
+import SponsorsSection from '../components/SponsorsSection';
+import FacultySection from '../components/FacultySection';
+
+// FIX: Ensure you are using ".." to go up to src, then into assets
+import img1 from '../assets/homeimg/js1.jpg'; 
+import img2 from '../assets/homeimg/js2.jpg';
+import img3 from '../assets/homeimg/js3.jpg';
+import img4 from '../assets/homeimg/js4.jpg';
+
+const imageList = [img1, img2, img3, img4];
 
 const HomePage = () => {
-    const [subtitle, setSubtitle] = useState('');
-    const phrases = useMemo(() => ["We Code.", "We Build.", "We Compete.", "We Collaborate."], []);
-    const [phraseIndex, setPhraseIndex] = useState(0);
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
     useEffect(() => {
-        let currentText = '';
-        let isDeleting = false;
-        let timer;
+        const interval = setInterval(() => {
+            setCurrentImageIndex((prevIndex) => 
+                prevIndex === imageList.length - 1 ? 0 : prevIndex + 1
+            );
+        }, 3000); 
 
-        const typingEffect = () => {
-            const currentPhrase = phrases[phraseIndex];
-            if (isDeleting) {
-                currentText = currentPhrase.substring(0, currentText.length - 1);
-            } else {
-                currentText = currentPhrase.substring(0, currentText.length + 1);
-            }
-            setSubtitle(currentText);
-
-            let typeSpeed = 150;
-            if (isDeleting) {
-                typeSpeed /= 2;
-            }
-
-            if (!isDeleting && currentText === currentPhrase) {
-                typeSpeed = 2000;
-                isDeleting = true;
-            } else if (isDeleting && currentText === '') {
-                isDeleting = false;
-                setPhraseIndex((prev) => (prev + 1) % phrases.length);
-                typeSpeed = 500;
-            }
-            timer = setTimeout(typingEffect, typeSpeed);
-        };
-
-        timer = setTimeout(typingEffect, 250);
-
-        return () => clearTimeout(timer);
-    }, [phraseIndex, phrases]);
+        return () => clearInterval(interval);
+    }, []);
 
     return (
         <div className="home-page">
-            <ThreeDBackground /> {/* ✨ Added the component back */}
-            <section className="hero-content">
-                <h1 className="hero-title" data-text="Picsel Club">
-                    Picsel Club
-                </h1>
-                <p className="hero-subtitle">
-                    {subtitle}
-                    <span className="typing-cursor"></span>
-                </p>
-                <Link to="/events" className="hero-button">
-                    Explore Events
-                </Link>
-            </section>
-
-            <section className="placeholder-section">
-                <h2>About Our Club</h2>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.
-                </p>
-            </section>
-
-            <section className="placeholder-section">
-                <h2>Our Mission</h2>
-                <p>
-                    Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor.
-                </p>
-            </section>
             
-            <SpinningLogo />
+            <nav className="top-nav">
+                <div className="logo">Picsel Club</div>
+            </nav>
+
+            <section className="hero-content">
+                {/* LEFT SIDE */}
+                <div className="hero-text-side">
+                    <h1 className="hero-title">
+                        Learn teamwork essentials for <br />
+                        <span className="highlight">effective <br /> collaboration.</span>
+                    </h1>
+                    
+                    <p className="hero-description">
+                        The modern Picsel dictates its own terms. Today, to be a competitive specialist requires more than professional skills.
+                    </p>
+                    
+                    <Link to="/events" className="primary-button">
+                        View Events
+                    </Link>
+                </div>
+
+                {/* RIGHT SIDE: SLIDESHOW (Straight & Clean) */}
+                <div className="hero-image-side">
+                    <div className="image-container">
+                        
+                        {imageList.map((img, index) => (
+                            <img 
+                                key={index}
+                                src={img} 
+                                alt={`Slide ${index}`} 
+                                className={`slide-image ${index === currentImageIndex ? 'active' : ''}`}
+                            />
+                        ))}
+
+                        <div className="image-overlay-card">
+                            <p>
+                                <strong>PICSEL Committee:</strong> 
+                                Ignite innovation, foster collaboration, and shape the future of technology!
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <div className="vision-section-wrapper">
+                <VisionSection />
+            </div>
+            
+            <div className="team-section-wrapper">
+                <TeamHome />
+            </div>
+
+            <div className="faculty-section-wrapper">
+                        
+                <FacultySection />
+            </div>
+
+            <div className="sponsors-section-wrapper">
+                <SponsorsSection />
+            </div>
         </div>
     );
 };
 
-export default HomePage;
+export default HomePage;    

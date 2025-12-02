@@ -1,0 +1,40 @@
+[
+  {
+    "id": 1,
+    "name": "Prof. Random",
+    "role": "Faculty Coordinator",
+    "imageUrl": "../assets/facultyimg/fac2.jpg",
+    "message": "Innovation starts with a single step. We are here to guide you."
+  },
+  {
+    "id": 2,
+    "name": "Dr. Random",
+    "role": "Head of Department",
+    "imageUrl": "../assets/facultyimg/fac2.jpg",
+    "message": "Discipline and creativity go hand in hand in engineering."
+  },
+
+  {
+    "id": 3,
+    "name": "Dr. Random",
+    "role": "Head of Department",
+    "imageUrl": "../assets/facultyimg/fac2.jpg",
+    "message": "Discipline and creativity go hand in hand in engineering."
+  },
+
+  {
+    "id": 4,
+    "name": "Dr. Random",
+    "role": "Head of Department",
+    "imageUrl": "../assets/facultyimg/fac2.jpg",
+    "message": "Discipline and creativity go hand in hand in engineering."
+  },
+
+  {
+    "id": 5,
+    "name": "Dr. Random",
+    "role": "Head of Department",
+    "imageUrl": "../assets/facultyimg/fac2.jpg",
+    "message": "Discipline and creativity go hand in hand in engineering."
+  }
+]

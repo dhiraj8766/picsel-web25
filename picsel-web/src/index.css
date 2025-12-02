@@ -13,22 +13,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  /* --- 1. Set the default cursor for the entire page --- */
-  cursor: url('./assets/dagger-cursor.png') 0 0, auto;
+ 
 }
 
-/* --- 2. Change the cursor on ALL clickable elements (Final Fix) --- */
-a,
-button,
-label,
-select,
-input[type="submit"],
-input[type="button"],
-input[type="reset"],
-[role="button"],
-[role="link"],
-[tabindex]:not([tabindex="-1"]),
-.clickable {
-  /* We add !important to ensure this rule always wins against other styles. */
-  cursor: url('./assets/sung-jinwoo-cursor.png') 16 16, pointer !important;
-}

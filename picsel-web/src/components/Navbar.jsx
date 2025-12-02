@@ -34,8 +34,8 @@ const Navbar = () => {
             name: "Events", 
             path: "/events",
             dropdown: [
-                { name: "Upcoming Events", path: "/events/upcoming", description: "See what's next on our calendar." },
-                { name: "Successful Events", path: "/events/successful", description: "Browse our gallery of past events." },
+                { name: "Upcoming Events", path: "/events", description: "See what's next on our calendar." },
+                { name: "Successful Events", path: "/xevents", description: "Browse our gallery of past events." },
             ]
         },
         { name: "Team", path: "/team" },

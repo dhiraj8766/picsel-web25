@@ -1,0 +1,128 @@
+/* Apply this reset to ensure padding doesn't increase width */
+* {
+    box-sizing: border-box;
+}
+
+.vision-section {
+    width: 100%;
+    background-color: #050505;
+    padding: 6rem 5%; /* Adjusted padding */
+    color: #fff;
+    overflow-x: hidden; /* Prevents any accidental horizontal scroll */
+}
+
+.vision-container {
+    max-width: 1280px; /* Slightly tighter width for better readability */
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* --- HEADER --- */
+.vision-header {
+    margin-bottom: 4rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #222;
+}
+
+.sub-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #666;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 400;
+    color: #fff;
+    margin: 0;
+}
+
+/* --- GRID (THE FIX) --- */
+.vision-grid {
+    display: grid;
+    /* 1. Changed minmax to 280px so it fits better on smaller laptops.
+       2. auto-fit ensures they wrap to the next line if the screen is too small.
+    */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem; 
+    width: 100%;
+}
+
+/* --- CARD --- */
+.vision-card {
+    background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 100%);
+    border: 1px solid #222;
+    padding: 2.5rem 2rem;
+    border-radius: 16px;
+    position: relative;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    /* Ensures content stays inside the card */
+    display: flex;
+    flex-direction: column; 
+}
+
+.card-number {
+    font-family: 'Inter', sans-serif;
+    font-size: 2.5rem; /* Slightly smaller for balance */
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #fff;
+    line-height: 1.2;
+}
+
+.card-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #888;
+}
+
+/* --- HOVER EFFECTS --- */
+.vision-card:hover {
+    transform: translateY(-5px);
+    border-color: #444;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.vision-card:hover .card-number {
+    color: #555;
+}
+
+.vision-card:hover .card-desc {
+    color: #ccc;
+}
+
+/* --- RESPONSIVE FIXES --- */
+@media (max-width: 1024px) {
+    /* On tablets/small laptops, allow 2 columns */
+    .vision-grid {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+}
+
+@media (max-width: 768px) {
+    /* On mobile, stack them 1 column */
+    .vision-grid {
+        grid-template-columns: 1fr; 
+    }
+    
+    .vision-section {
+        padding: 4rem 1.5rem; /* Reduce padding on mobile */
+    }
+    
+    .section-title {
+        font-size: 2.5rem;
+    }
+}

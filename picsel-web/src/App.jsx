@@ -3,7 +3,8 @@ import { Routes, Route } from 'react-router-dom';
 import { AudioProvider } from './context/AudioContext'; // ✨ Import the AudioProvider
 
 // Import all your pages and components
-import HomePage from './pages/HomePage';
+import XEventspage from './pages/XEventspage';
+import HomePage from './pages/HomePage'; 
 import EventsPage from './pages/EventsPage';
 import AboutPage from './pages/AboutPage';
 import TeamPage from './pages/TeamPage';
@@ -38,6 +39,7 @@ function App() {
             <Route path="/events" element={<EventsPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/team" element={<TeamPage />} />
+            <Route path="/xevents" element={<XEventspage />} />
           </Routes>
         </main>
         <Footer />

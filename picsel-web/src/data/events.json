@@ -1,10 +1,49 @@
 [
   {
     "id": 1,
-    "title": "Title",
-    "date": "2025-09-15",
-    "time": "3:00 PM",
-    "location": "College Auditorium",
-    "description": "description Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    "title": "React Orientation",
+    "date": "2025-11-09",
+    "time": "10:00 AM",
+    "location": "Lab 101",
+    "description": "Introduction to the club for new members. We covered the basics of JSX and Components.",
+    "coverImage": "../assets/xEventsimg/a.jpg",
+    "gallery": [
+      "../assets/xEventsimg/a.jpg",
+      "../assets/xEventsimg/a.jpg",
+      "../assets/xEventsimg/a.jpg"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Hackathon Kickoff",
+    "date": "2025-11-20",
+    "time": "09:00 AM",
+    "location": "Main Auditorium",
+    "description": "The start of our 48-hour coding marathon. Teams formed, ideas pitched, and coffee consumed.",
+    "coverImage": "../assets/teamimg/sc.jpg",
+    "gallery": [
+      "../assets/xEventsimg/a.jpg",
+      "../assets/xEventsimg/a.jpg"
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Guest Lecture: AI",
+    "date": "2025-11-28",
+    "time": "02:00 PM",
+    "location": "Virtual",
+    "description": "Deep dive into LLMs with a senior engineer from Google.",
+    "coverImage": "../assets/xEventsimg/a.jpg",
+    "gallery": []
+  },
+  {
+    "id": 4,
+    "title": "Winter Gala",
+    "date": "2025-12-15",
+    "time": "06:00 PM",
+    "location": "City Hall",
+    "description": "End of semester celebration.",
+    "coverImage": "../assets/xEventsimg/a.jpg",
+    "gallery": []
   }
 ]

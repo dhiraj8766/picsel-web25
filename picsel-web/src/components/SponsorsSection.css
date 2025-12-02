@@ -1,0 +1,142 @@
+.sponsors-section {
+    width: 100%;
+    background-color: #050505;
+    padding: 6rem 5% 8rem; /* Extra padding at bottom */
+    color: #fff;
+    border-top: 1px solid #111;
+}
+
+.sponsors-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* --- HEADER --- */
+.sponsors-header {
+    margin-bottom: 4rem;
+}
+
+.sponsors-header .sub-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.sponsors-header .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: #fff;
+    margin: 0 0 1rem 0;
+}
+
+.sponsors-desc {
+    font-family: 'Inter', sans-serif;
+    color: #666;
+    max-width: 500px;
+    margin: 0 auto;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* --- GRID --- */
+.sponsors-grid {
+    display: grid;
+    /* Creates a responsive grid with minimum width columns */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+/* --- CARD STYLE --- */
+.sponsor-card {
+    height: 120px;
+    background: rgba(255, 255, 255, 0.02); /* Very subtle glass */
+    border: 1px solid #222;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+/* THE LOGO */
+.sponsor-logo {
+    max-width: 70%;
+    max-height: 60%;
+    object-fit: contain;
+    /* Default: Grayscale and Dim */
+    filter: grayscale(100%) opacity(0.5); 
+    transition: all 0.4s ease;
+}
+
+/* --- HOVER EFFECTS --- */
+.sponsor-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: #444;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* Reveal Color on Hover */
+.sponsor-card:hover .sponsor-logo {
+    filter: grayscale(0%) opacity(1);
+    transform: scale(1.1);
+}
+
+/* --- "BECOME A SPONSOR" CARD --- */
+.cta-card {
+    border: 1px dashed #333; /* Dashed border to show it's empty */
+    flex-direction: column;
+    gap: 8px;
+}
+
+.cta-text {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    color: #444;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.cta-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    color: #3b82f6; /* Accent color */
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.cta-card:hover {
+    border-color: #555;
+    background: rgba(59, 130, 246, 0.05); /* Blue tint */
+}
+
+.cta-card:hover .cta-text {
+    color: #fff;
+}
+
+.cta-card:hover .cta-sub {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- MOBILE --- */
+@media (max-width: 768px) {
+    .sponsors-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 Columns on mobile */
+    }
+    
+    .sponsor-card {
+        height: 100px;
+        padding: 1.5rem;
+    }
+}

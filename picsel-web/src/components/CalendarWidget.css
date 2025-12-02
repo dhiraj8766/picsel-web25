@@ -1,0 +1,249 @@
+/* --- CONTAINER --- */
+.calendar-widget {
+    background-color: #0a0a0a;
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 1.5rem;
+    width: 100%; 
+    max-width: 400px; /* Limits maximum size */
+    box-sizing: border-box; 
+    font-family: 'Inter', sans-serif;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    overflow: hidden; 
+    position: relative; /* Essential for popup positioning */
+}
+
+/* --- HEADER --- */
+.cal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #222;
+}
+
+.cal-month {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: #fff;
+    margin: 0;
+}
+
+.cal-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.cal-controls button {
+    background: transparent;
+    border: 1px solid #333;
+    color: #888;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.cal-controls button:hover {
+    background: #fff;
+    color: #000;
+}
+
+/* --- GRID SYSTEM --- */
+.cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7 Equal columns */
+    gap: 1px;
+    background-color: #222; /* Border lines color */
+    border: 1px solid #222;
+    width: 100%;
+}
+
+.cal-day-label {
+    background-color: #0a0a0a;
+    padding: 10px 0;
+    font-size: 0.65rem;
+    color: #666;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* --- CELLS --- */
+.cal-cell {
+    background-color: #0a0a0a;
+    height: 70px;
+    padding: 4px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    
+    /* PREVENTS EXPLOSION */
+    min-width: 0; 
+    overflow: hidden; 
+}
+
+.cal-cell:hover {
+    background-color: #111;
+}
+
+.cal-date-num {
+    font-size: 0.8rem;
+    color: #fff;
+    margin-bottom: 4px;
+    margin-left: 2px;
+}
+
+.today-cell {
+    background-color: rgba(59, 130, 246, 0.05);
+}
+
+.today-cell .cal-date-num {
+    color: #3b82f6;
+    font-weight: 700;
+}
+
+.cal-cell.empty {
+    background-color: #050505;
+}
+
+/* --- EVENT PILLS --- */
+.cal-events-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    width: 100%; 
+}
+
+.cal-pill {
+    font-size: 0.55rem;
+    padding: 2px 4px;
+    border-radius: 3px;
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    max-width: 100%; 
+    display: block;
+    cursor: pointer; /* Shows it's clickable */
+}
+
+.cal-pill.blue {
+    background: rgba(59, 130, 246, 0.2);
+    color: #93c5fd;
+    border-left: 2px solid #3b82f6;
+}
+
+.cal-pill.purple {
+    background: rgba(168, 85, 247, 0.2);
+    color: #d8b4fe;
+    border-left: 2px solid #a855f7;
+}
+
+/* --- POPUP CARD STYLES (NEW) --- */
+
+/* 1. Overlay */
+.event-popup-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Dim background */
+    backdrop-filter: blur(3px); /* Blur background */
+    z-index: 50; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    animation: fadeIn 0.2s ease;
+}
+
+/* 2. The Card */
+.event-popup-card {
+    background: #000;
+    border: 1px solid #333;
+    padding: 1.5rem;
+    width: 90%;
+    max-width: 280px;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.9);
+    position: relative;
+    text-align: left;
+}
+
+/* 3. Popup Typography */
+.popup-date {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    color: #3b82f6; 
+    font-weight: 700;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.popup-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: #fff;
+    margin: 0 0 0.5rem 0;
+    line-height: 1.2;
+}
+
+.popup-location {
+    font-size: 0.75rem;
+    color: #888;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.popup-desc {
+    font-size: 0.8rem;
+    color: #ccc;
+    line-height: 1.5;
+    margin: 0;
+    border-top: 1px solid #222;
+    padding-top: 0.8rem;
+}
+
+/* 4. Close Button */
+.popup-close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: transparent;
+    border: none;
+    color: #666;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0;
+    width: auto;
+    height: auto;
+}
+
+.popup-close:hover {
+    color: #fff;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* --- MOBILE SPECIFIC --- */
+@media (max-width: 768px) {
+    /* Fix popup on mobile to cover screen properly */
+    .event-popup-overlay {
+        position: fixed; 
+        top: 0;
+        left: 0;
+        z-index: 9999;
+        background: rgba(0, 0, 0, 0.85);
+        border-radius: 0;
+    }
+}

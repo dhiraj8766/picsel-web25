@@ -1,25 +1,184 @@
-
-
 .footer {
-  text-align: center;
-  padding: 2rem;
-  margin-top: 2rem;
-  background-color: var(--card-bg);
-  border-top: 1px solid #333;
-  color: #aaa;
+    width: 100%;
+    background-color: #050505;
+    color: #fff;
+    border-top: 1px solid #1a1a1a;
+    padding: 5rem 5% 2rem;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+    overflow: hidden;
 }
 
-.social-links {
-  margin-top: 1rem;
+.footer-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
 }
 
-.social-links a {
-  margin: 0 0.75rem;
-  color: #aaa;
-  text-decoration: none;
-  transition: color 0.2s ease-in-out;
+/* --- TOP COLUMNS --- */
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 3rem;
+    margin-bottom: 5rem;
 }
 
-.social-links a:hover {
-  color: var(--accent-color);
+.footer-col {
+    flex: 1;
+    min-width: 160px;
+}
+
+.brand-col {
+    flex: 2; /* Takes up more space */
+    max-width: 350px;
+}
+
+/* Typography */
+.footer-logo {
+    font-family: 'Playfair Display', serif; /* Matching your headings */
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.footer-desc {
+    color: #888;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.col-title {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: #555; /* Subtle header */
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+/* Links */
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-links a {
+    color: #aaa;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.3s ease, transform 0.2s ease;
+    display: inline-block;
+}
+
+.footer-links a:hover {
+    color: #fff;
+    transform: translateX(3px); /* Subtle nudge right on hover */
+}
+
+/* Social Icons */
+.social-icons {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    color: #ccc;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.social-link:hover {
+    background: #fff;
+    color: #000;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+}
+
+/* --- BOTTOM WATERMARK & COPYRIGHT --- */
+.footer-bottom {
+    border-top: 1px solid #111;
+    padding-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* The Big Text Effect */
+.watermark-container {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 2rem;
+    user-select: none; /* Can't select this text */
+}
+
+.footer-watermark {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 12vw, 10rem); /* Responsive giant size */
+    font-weight: 700;
+    color: #111; /* Very dark grey, almost blends in */
+    margin: 0;
+    line-height: 1;
+    letter-spacing: -2px;
+    opacity: 0.5;
+}
+
+.copyright-row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.legal-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.legal-links a {
+    color: #666;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.legal-links a:hover {
+    color: #fff;
+}
+
+/* --- MOBILE RESPONSIVE --- */
+@media (max-width: 768px) {
+    .footer-top {
+        flex-direction: column;
+        gap: 2.5rem;
+    }
+
+    .brand-col {
+        max-width: 100%;
+    }
+
+    .footer-watermark {
+        font-size: 18vw; /* Massive on mobile */
+    }
+
+    .copyright-row {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
 }
