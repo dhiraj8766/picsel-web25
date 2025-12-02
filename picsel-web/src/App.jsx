@@ -3,7 +3,8 @@ import { Routes, Route } from 'react-router-dom';
 import { AudioProvider } from './context/AudioContext'; // ✨ Import the AudioProvider
 
 // Import all your pages and components
-import XEventspage from './pages/XEventspage';
+import FacultyPage from './pages/FacultyPage';
+import XEventsPage from './pages/XEventspage';
 import HomePage from './pages/HomePage'; 
 import EventsPage from './pages/EventsPage';
 import AboutPage from './pages/AboutPage';
@@ -11,6 +12,7 @@ import TeamPage from './pages/TeamPage';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Preloader from './components/Preloader';
+import ContactPage from './pages/ContactPage';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -39,7 +41,11 @@ function App() {
             <Route path="/events" element={<EventsPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/team" element={<TeamPage />} />
-            <Route path="/xevents" element={<XEventspage />} />
+            <Route path="/xevents" element={<XEventsPage />} />
+            <Route path="/faculty" element={<FacultyPage/>} />
+            <Route path="/contact" element={<ContactPage />} />
+
+            
           </Routes>
         </main>
         <Footer />

@@ -25,9 +25,8 @@ const Navbar = () => {
             name: "About", 
             path: "/about",
             dropdown: [
-                { name: "About Us", path: "/about-us", description: "Learn about our mission and team." },
+                { name: "About Us", path: "/about", description: "Learn about our mission and team." },
                 { name: "Contact", path: "/contact", description: "Get in touch with us." },
-                { name: "Learn More", path: "/learn-more", description: "Explore our detailed resources." },
             ]
         },
         { 
@@ -39,6 +38,7 @@ const Navbar = () => {
             ]
         },
         { name: "Team", path: "/team" },
+        { name: "Faculty", path: "/faculty" },
     ];
     
     useEffect(() => {
