@@ -1,5 +1,6 @@
 import React from 'react';
 import './VisionSection.css';
+import ElectricBorder from './ElectricBorder';
 
 const VisionSection = () => {
     const visionData = [
@@ -32,13 +33,22 @@ const VisionSection = () => {
 
                 {/* The Grid */}
                 <div className="vision-grid">
+                  
+
                     {visionData.map((item) => (
+                          <ElectricBorder
+  color="#ffffffff"
+  speed={1}
+  chaos={0.5}
+  thickness={2}
+  style={{ borderRadius: 16 }}>
                         <div key={item.id} className="vision-card">
                             <div className="card-number">{item.id}</div>
                             <h3 className="card-title">{item.title}</h3>
                             <p className="card-desc">{item.description}</p>
                             <div className="card-hover-line"></div>
                         </div>
+                        </ElectricBorder>
                     ))}
                 </div>
 

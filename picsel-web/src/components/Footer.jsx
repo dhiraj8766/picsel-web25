@@ -44,7 +44,7 @@ const Footer = () => {
 
           {/* Column 4: Socials */}
           <div className="footer-col">
-            <h4 className="col-title">Connect</h4>
+            <h4 className="col-title social-icons">Connect</h4>
             <div className="social-icons">
               
               {/* Instagram Icon */}
