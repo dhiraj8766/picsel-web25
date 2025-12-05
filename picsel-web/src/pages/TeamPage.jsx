@@ -4,6 +4,7 @@ import './TeamPage.css';
 
 // Using React Icons for a polished look
 import { FiLinkedin, FiInstagram, FiTwitter, FiGithub, FiGlobe, FiMail } from 'react-icons/fi';
+import ElectricBorder from '../components/ElectricBorder';
 
 // --- IMAGE LOADER ---
 const allImages = import.meta.glob('../assets/**/*.{png,jpg,jpeg,webp}', { eager: true });
@@ -29,6 +30,7 @@ const getSocialIcon = (key) => {
 
 const TeamPage = () => {
   return (
+    
     <div className="team-page-container">
       
       <div className="team-header-section">
@@ -39,9 +41,19 @@ const TeamPage = () => {
         </p>
       </div>
 
+
+
       <div className="team-grid">
         {teamData.map((member) => (
-          <div key={member.id} className="team-card">
+                       <ElectricBorder
+  color="#7df9ff"
+  speed={1}
+  chaos={0.5}
+  thickness={2}
+  style={{ borderRadius: 16 }}
+>
+
+    <div key={member.id} className="team-card">
             
             {/* 1. Full Height Image */}
             <div className="image-wrapper">
@@ -84,6 +96,7 @@ const TeamPage = () => {
             </div>
 
           </div>
+          </ElectricBorder>
         ))}
       </div>
     </div>
