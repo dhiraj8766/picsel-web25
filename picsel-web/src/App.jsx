@@ -14,6 +14,10 @@ import Footer from './components/Footer';
 import Preloader from './components/Preloader';
 import ContactPage from './pages/ContactPage';
 import Facultypage from './pages/FacultyPage';
+import LoginPage from './admin/LoginPage';
+import DashboardPage from './admin/DashboardPage';
+import ProtectedRoute from './admin/ProtectedRoute';
+import AdminEventPage from './admin/AdminEventPage';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -45,6 +49,34 @@ function App() {
             <Route path="/xevents" element={<XEventsPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/faculty" element={<Facultypage />} />
+            <Route path="/login" element={<LoginPage />} />
+            
+            
+
+            {/* Protected Route - The Gatekeeper */}
+            <Route 
+              path="/dashboard" 
+              element={
+                <ProtectedRoute>
+                  <DashboardPage />
+                </ProtectedRoute>
+              } 
+            />
+            {/* Redirect root to login for now */}
+            <Route path="/" element={<LoginPage />} /> 
+
+            
+            <Route 
+              path="/adminEvent" 
+              element={
+                <ProtectedRoute>
+                  <AdminEventPage />
+                </ProtectedRoute>
+              } 
+            />
+            <Route path="/" element={<LoginPage />} /> 
+
+
 
             
           </Routes>

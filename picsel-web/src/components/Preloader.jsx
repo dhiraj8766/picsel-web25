@@ -41,10 +41,10 @@ const Preloader = () => {
         <div className="preloader">
             {/* Videos are now wrapped in positioned containers */}
             <div className="video-container video-container-1">
-                <video className="preloader-video" src="/clip.mp4" autoPlay muted playsInline loop></video>
+                <video className="preloader-video" src="/clip2.mp4" autoPlay muted playsInline loop></video>
             </div>
             <div className="video-container video-container-2">
-                <video className="preloader-video" src="/clip.mp4" autoPlay muted playsInline loop></video>
+                <video className="preloader-video" src="/clip2.mp4" autoPlay muted playsInline loop></video>
             </div>
 
             <div className="preloader-content">
