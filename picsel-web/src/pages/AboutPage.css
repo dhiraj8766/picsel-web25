@@ -1,20 +1,144 @@
-
-
-.about-content {
-  max-width: 800px;
-  margin: 0 auto;
-  background-color: var(--card-bg);
-  padding: 2rem;
-  border-radius: 8px;
-  border: 1px solid #333;
+/* --- GLOBAL PAGE --- */
+.about-page {
+    background-color: #050505;
+    min-height: 100vh;
+    color: #fff;
+    padding: 6rem 5%;
+    font-family: 'Inter', sans-serif;
 }
 
-.about-content p {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  margin-bottom: 1.5rem;
+.page-header {
+    margin-bottom: 4rem;
+    padding-left: 20px;
 }
 
-.about-content p:last-child {
-  margin-bottom: 0;
+.sub-header {
+    color: #3b82f6;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.main-header {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    margin: 10px 0 0;
+}
+
+/* --- LAYOUT --- */
+.about-layout {
+    display: flex;
+    gap: 4rem;
+    position: relative;
+}
+
+/* --- LEFT SIDE VERTICAL LINE --- */
+.line-section {
+    position: relative;
+    /* padding-left: 40px;
+    flex: 0.6; */
+    min-height: 100%;
+}
+
+.line-track {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: #222;
+    border-radius: 2px;
+}
+
+.line-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 0;
+    background: linear-gradient(to bottom, #3b82f6, #8b5cf6, #ec4899);
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.6);
+    border-radius: 2px;
+    transition: height 1.3s ease-out;
+}
+
+/* --- RIGHT SIDE CONTENT --- */
+.content-section {
+    flex: 2;
+}
+
+.about-card {
+    margin-bottom: 2.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid #222;
+    padding: 1.8rem;
+    border-radius: 12px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.about-card.show-card {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.about-card:hover {
+    border-color: #3b82f6;
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.about-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.7rem;
+    margin-bottom: 0.7rem;
+}
+
+.about-card-text {
+    color: #ccc;
+    font-size: 1rem;
+    line-height: 1.65;
+}
+@media (max-width: 1024px) {
+
+    .about-layout {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .line-section {
+        width: 100%;
+        padding-left: 0;
+        margin-bottom: 30px;
+        height: 250px;
+        position: relative;
+    }
+
+    .line-track {
+        left: 0;
+        height: 100%;
+    }
+
+    .line-progress {
+        left: 0;
+        height: 100%;
+        background: linear-gradient(to bottom, #3b82f6, #8b5cf6, #ec4899);
+        box-shadow: 0 0 12px rgba(59, 130, 246, 0.6);
+        border-radius: 2px;
+        animation: mobileLine 2s ease forwards; /* <-- Keyframe animation */
+    }
+
+    @keyframes mobileLine {
+        0% {
+            height: 0;
+        }
+        100% {
+            height: 100%;
+        }
+    }
+
+    .main-header {
+        font-size: 2.6rem;
+    }
 }
