@@ -18,6 +18,11 @@ import LoginPage from './admin/LoginPage';
 import DashboardPage from './admin/DashboardPage';
 import ProtectedRoute from './admin/ProtectedRoute';
 import AdminEventPage from './admin/AdminEventPage';
+import AdminFacultyPage from './admin/AdminFacultyPage';
+import AdminTeamPage from './admin/AdminTeamPage';
+import HomeTopPage from './components/HomeTopPage';
+import HomeVisionPage from './components/HomeVisionPage';
+import Header  from './components/Header';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -25,7 +30,7 @@ function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 5000); 
+    }, 5000); // Loading Screen time
 
     return () => clearTimeout(timer);
   }, []);
@@ -39,7 +44,8 @@ function App() {
   return (
     <AudioProvider> {/* ✨ Wrap the entire app */}
       <div className="App">
-        <Navbar />
+
+        <Header />
         <main className="main-content">
           <Routes>
             <Route path="/" element={<HomePage />} />
@@ -50,6 +56,8 @@ function App() {
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/faculty" element={<Facultypage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/homeTop" element={<HomeTopPage />} />
+            <Route path="/homeVision" element={<HomeVisionPage />} />
             
             
 
@@ -75,6 +83,27 @@ function App() {
               } 
             />
             <Route path="/" element={<LoginPage />} /> 
+
+
+            <Route 
+              path="/adminFaculty" 
+              element={
+                <ProtectedRoute>
+                  <AdminFacultyPage />
+                </ProtectedRoute>
+              } 
+            />
+            <Route path="/" element={<LoginPage />} />
+
+            <Route 
+              path="/adminTeam" 
+              element={
+                <ProtectedRoute>
+                  <AdminTeamPage />
+                </ProtectedRoute>
+              } 
+            />
+            <Route path="/" element={<LoginPage />} />
 
 
 

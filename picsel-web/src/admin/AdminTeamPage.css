@@ -1,0 +1,262 @@
+.admin-page-layout {
+  display: flex;
+  min-height: 100vh;
+  background: #181818;
+  color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.admin-main-content {
+  flex: 1;
+  padding: 30px;
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #333;
+  padding-bottom: 15px;
+}
+
+/* LIST STYLING */
+.item-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.item-card {
+  background: #1f1f1f;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  transition: transform 0.2s;
+}
+
+.item-card:hover {
+  border-color: #444;
+}
+
+.item-img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid #3a86ff;
+}
+
+.item-info {
+  flex: 1;
+}
+
+.info-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+.info-top h4 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.token-badge {
+  background: #333;
+  color: #3a86ff;
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-weight: bold;
+  border: 1px solid #3a86ff;
+}
+
+.role-text {
+  margin: 0 0 5px 0;
+  color: #aaa;
+  font-size: 0.95rem;
+}
+
+.item-info small {
+  color: #666;
+}
+
+
+/* MODAL & FORMS */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(3px);
+}
+
+.form-box {
+  background: #222;
+  padding: 25px;
+  width: 500px; /* Wider for team details */
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  border: 1px solid #333;
+}
+
+.small-box {
+    width: 350px;
+}
+
+.form-box h3 {
+  margin-top: 0;
+  color: #eee;
+  border-bottom: 1px solid #333;
+  padding-bottom: 10px;
+}
+
+/* Input Styles */
+.form-box input[type="text"],
+.form-box input[type="email"],
+.form-box input[type="number"],
+.form-box textarea,
+.form-box select {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #444;
+  background: #181818;
+  color: white;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-box input:focus, .form-box textarea:focus, .form-box select:focus {
+  outline: none;
+  border-color: #3a86ff;
+}
+
+/* Row Layouts */
+.row-2 {
+    display: flex;
+    gap: 10px;
+}
+.row-2 input {
+    width: 50%;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.9rem;
+    color: #ccc;
+    margin-bottom: 5px;
+}
+
+/* Socials Section */
+.socials-section {
+    background: #1a1a1a;
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid #333;
+}
+
+.socials-section h4 {
+    margin: 0 0 5px 0;
+    font-size: 1rem;
+    color: #ddd;
+}
+
+.hint {
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 10px;
+    margin-top: 0;
+}
+
+.social-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.social-row label {
+    width: 100px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.social-row input[type="text"] {
+    flex: 1;
+}
+
+.file-input-group {
+    border-top: 1px solid #333;
+    padding-top: 10px;
+}
+
+/* Image Preview */
+.img-preview-box {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.img-preview-box img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid #555;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 15px;
+  border-top: 1px solid #333;
+  padding-top: 15px;
+}
+
+/* TOAST */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #3a86ff;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 6px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  z-index: 2000;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Scrollbar for Modal */
+.form-box::-webkit-scrollbar {
+    width: 8px;
+}
+.form-box::-webkit-scrollbar-track {
+    background: #222;
+}
+.form-box::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 4px;
+}

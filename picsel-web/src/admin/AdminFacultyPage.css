@@ -1,0 +1,185 @@
+.admin-page-layout {
+  display: flex;
+  min-height: 100vh;
+  background: #181818;
+  color: #fff;
+  font-family: sans-serif;
+}
+
+.admin-main-content {
+  flex: 1;
+  padding: 30px;
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+/* LIST STYLING */
+.item-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.item-card {
+  background: #1f1f1f;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #333;
+}
+
+.item-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 50%; /* Circular images for faculty */
+  border: 2px solid #3a86ff;
+}
+
+.item-info {
+  flex: 1;
+}
+
+.item-info h4 {
+  margin: 0 0 4px 0;
+  font-size: 1.1rem;
+}
+
+.role-text {
+  margin: 0;
+  color: #aaa;
+  font-size: 0.95rem;
+}
+
+.item-info small {
+  color: #666;
+}
+
+/* MODAL & FORMS */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.form-box {
+  background: #222;
+  padding: 25px;
+  width: 400px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.form-box h3 {
+  margin-top: 0;
+  color: #eee;
+}
+
+.form-box input,
+.form-box textarea,
+.form-box select {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #444;
+  background: #181818;
+  color: white;
+  width: 100%;
+  box-sizing: border-box; /* Fixes padding overflow */
+}
+
+.form-box input:focus,
+.form-box textarea:focus {
+  outline: none;
+  border-color: #3a86ff;
+}
+
+.file-input-group {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.img-preview-box {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.img-preview-box img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #555;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end; /* Buttons to the right */
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* LOADER */
+.loader-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  border-radius: 10px;
+}
+
+.spinner {
+  width: 35px;
+  height: 35px;
+  border: 3px solid #444;
+  border-top: 3px solid #3a86ff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 10px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* TOAST */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #3a86ff;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 6px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  z-index: 2000;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}

@@ -1,79 +1,77 @@
-import React, { useState, useMemo, useEffect } from 'react';
-import './XEventspage.css';
-import eventsData from '../data/events.json'; 
+import React, { useState, useMemo, useEffect } from "react";
+import axios from "axios";
+import "../styles/XEventspage.css";
 
-// --- ROBUST IMAGE LOADER ---
-// 1. Load ALL images from any folder inside 'assets' (recursive search)
-const allImages = import.meta.glob('../assets/**/*.{png,jpg,jpeg,webp}', { eager: true });
-
-// 2. Smart Lookup Function
-const getImageUrl = (jsonPath) => {
-  if (!jsonPath) return "https://via.placeholder.com/400x300?text=No+Image";
-
-  // Attempt 1: Exact Match (Fastest)
-  if (allImages[jsonPath]) {
-    return allImages[jsonPath].default;
-  }
-
-  // Attempt 2: Filename Match (Smart)
-  // If JSON says "../assets/teamimg/sc.jpg" but React wants "./assets/teamimg/sc.jpg", this fixes it.
-  const filename = jsonPath.split('/').pop(); // Get "sc.jpg" or "a.jpg"
-  
-  // Find a key in our loaded images that ends with this filename
-  const foundKey = Object.keys(allImages).find(key => key.toLowerCase().endsWith(filename.toLowerCase()));
-
-  if (foundKey) {
-    return allImages[foundKey].default;
-  }
-
-  // Debugging: If still not found, print error to console
-  console.error(`Image not found for path: ${jsonPath}`);
-  return "https://via.placeholder.com/400x300?text=Image+Not+Found";
-};
+const API_BASE = "http://localhost:8080/api/events";
+const PLACEHOLDER = "https://via.placeholder.com/400x300?text=No+Image";
 
 const XEventspage = () => {
+  const [events, setEvents] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [scrollProgress, setScrollProgress] = useState(0);
 
-  // --- SCROLL INDICATOR ---
+  // --------------------------------------------------
+  // Load events from backend
+  // --------------------------------------------------
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const res = await axios.get(API_BASE);
+        setEvents(res.data); // List<EventDto>
+      } catch (err) {
+        console.error("Failed to load events", err);
+      }
+    };
+    fetchEvents();
+  }, []);
+
+  // --------------------------------------------------
+  // Scroll indicator
+  // --------------------------------------------------
   const handleScroll = () => {
-    const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const totalHeight =
+      document.documentElement.scrollHeight - window.innerHeight;
     const scrollPosition = window.scrollY;
     const progressPercentage = (scrollPosition / totalHeight) * 100;
     setScrollProgress(progressPercentage);
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // --- FILTER LOGIC ---
+  // --------------------------------------------------
+  // Filter: only past events (completed)
+  // --------------------------------------------------
   const pastEvents = useMemo(() => {
     const now = new Date();
-    return eventsData.filter(event => {
-      const timeString = event.time || "00:00"; 
-      const eventDate = new Date(`${event.date} ${timeString}`);
-      return eventDate < now; 
+    return events.filter((event) => {
+      if (!event.date) return false;
+      // date is "YYYY-MM-DD" from backend
+      const eventDate = new Date(event.date);
+      return eventDate < now;
     });
-  }, []);
+  }, [events]);
 
   const openModal = (event) => {
     setSelectedEvent(event);
-    document.body.style.overflow = 'hidden'; 
+    document.body.style.overflow = "hidden";
   };
 
   const closeModal = () => {
     setSelectedEvent(null);
-    document.body.style.overflow = 'auto';
+    document.body.style.overflow = "auto";
   };
 
   return (
     <div className="x-page">
-      
       {/* Scroll Progress Bar */}
       <div className="scroll-track">
-        <div className="scroll-thumb" style={{ height: `${scrollProgress}%` }}></div>
+        <div
+          className="scroll-thumb"
+          style={{ height: `${scrollProgress}%` }}
+        ></div>
       </div>
 
       <div className="x-container">
@@ -88,19 +86,22 @@ const XEventspage = () => {
 
         <div className="x-grid">
           {pastEvents.map((event) => (
-            <div key={event.id} className="x-card" onClick={() => openModal(event)}>
+            <div
+              key={event.id}
+              className="x-card"
+              onClick={() => openModal(event)}
+            >
               <div className="x-card-image-wrapper">
-                {/* USE SMART IMAGE LOADER HERE */}
-                <img 
-                  src={getImageUrl(event.coverImage)} 
-                  alt={event.title} 
-                  className="x-card-img" 
+                <img
+                  src={event.coverImage || PLACEHOLDER}
+                  alt={event.title}
+                  className="x-card-img"
                 />
                 <div className="x-card-overlay">
                   <span className="x-view-btn">View Gallery</span>
                 </div>
               </div>
-              
+
               <div className="x-card-content">
                 <span className="x-date">{event.date}</span>
                 <h3 className="x-title">{event.title}</h3>
@@ -120,9 +121,14 @@ const XEventspage = () => {
       {/* --- MODAL --- */}
       {selectedEvent && (
         <div className="x-modal-backdrop" onClick={closeModal}>
-          <div className="x-modal-content" onClick={(e) => e.stopPropagation()}>
-            <button className="x-close-btn" onClick={closeModal}>&times;</button>
-            
+          <div
+            className="x-modal-content"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button className="x-close-btn" onClick={closeModal}>
+              &times;
+            </button>
+
             <div className="x-modal-header-top">
               <span className="x-modal-date">{selectedEvent.date}</span>
               <h2>{selectedEvent.title}</h2>
@@ -131,16 +137,19 @@ const XEventspage = () => {
             <div className="x-gallery-grid">
               {/* Featured Image */}
               {selectedEvent.coverImage && (
-                 <div className="x-gallery-item featured">
-                    <img src={getImageUrl(selectedEvent.coverImage)} alt="Cover" />
-                 </div>
+                <div className="x-gallery-item featured">
+                  <img
+                    src={selectedEvent.coverImage || PLACEHOLDER}
+                    alt="Cover"
+                  />
+                </div>
               )}
-              
+
               {/* Gallery Grid */}
               {selectedEvent.gallery && selectedEvent.gallery.length > 0 ? (
                 selectedEvent.gallery.map((img, index) => (
                   <div key={index} className="x-gallery-item">
-                    <img src={getImageUrl(img)} alt={`Gallery ${index}`} />
+                    <img src={img || PLACEHOLDER} alt={`Gallery ${index}`} />
                   </div>
                 ))
               ) : (
@@ -151,11 +160,9 @@ const XEventspage = () => {
             <div className="x-modal-desc-section">
               <p className="x-modal-desc">{selectedEvent.description}</p>
             </div>
-
           </div>
         </div>
       )}
-
     </div>
   );
 };

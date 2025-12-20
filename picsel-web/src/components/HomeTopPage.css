@@ -1,0 +1,460 @@
+/* ---------------- VARIABLES ---------------- */
+:root {
+  --radius-xl: 32px;
+  --radius-md: 12px;
+  --text-primary: #ffffff;
+  --text-secondary: #a1a1aa;
+}
+
+/* Global Reset to prevent width issues */
+* {
+  box-sizing: border-box;
+}
+
+/* ---------------- LAYOUT ---------------- */
+.home-top {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 4rem;
+  padding: 6rem 4rem;
+  min-height: 100vh;
+  align-items: center;
+  /* Removed overflow: hidden to allow scrolling on small screens */
+  width: 100%;
+  max-width: 100vw;
+}
+
+/* ---------------- LEFT SIDE (TEXT) ---------------- */
+.hero-text-side {
+  z-index: 2;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.hero-title {
+  font-family: var(--font-serif, "Playfair Display", serif);
+  font-size: clamp(2.5rem, 5vw, 4.5rem); /* Adjusted clamp for better scaling */
+  line-height: 1.1;
+  font-weight: 400;
+  color: #71717a;
+  margin-bottom: 2rem;
+  letter-spacing: -0.02em;
+}
+
+.hero-title .highlight {
+  color: var(--text-primary);
+  font-style: italic;
+  display: block;
+}
+
+.hero-description {
+  font-family: var(--font-sans, system-ui, sans-serif);
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+  max-width: 480px;
+}
+
+.home-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  animation: slideInRight 0.8s ease-out;
+  touch-action: pan-y;
+}
+
+.event-preview {
+  height: 500px;
+  border-radius: var(--radius-xl);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+}
+
+/* Overlay Gradient */
+.event-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.95) 0%,
+    rgba(0, 0, 0, 0.6) 50%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  padding: 2rem;
+  display: flex;
+  align-items: flex-end;
+}
+
+/* ---------------- EVENT CONTENT ---------------- */
+.event-content-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  gap: 20px;
+}
+
+.event-info-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  flex: 1;
+}
+
+.event-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #fff;
+  margin: 0;
+  line-height: 1;
+  letter-spacing: -1px;
+  word-wrap: break-word; /* Prevents long words breaking layout */
+}
+
+.event-desc {
+  font-size: 0.95rem;
+  color: #e4e4e7;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Limit text lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.event-info-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  min-width: fit-content; /* Ensures date doesn't squash */
+}
+
+.upcoming-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  color: #fbbf24;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.date-time-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.dt-text {
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  white-space: nowrap; /* Keeps date on one line */
+}
+
+/* ---------------- FOOTER & NEW THUMBS ---------------- */
+.right-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0.5rem;
+}
+
+.event-thumbs {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap; /* Allows wrapping on tiny screens */
+}
+
+.thumb {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  cursor: pointer;
+  opacity: 0.5;
+  overflow: hidden;
+  transition: all 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+
+.thumb.active {
+  opacity: 1;
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: scale(1.05);
+}
+
+.thumb-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background-color: rgba(255, 255, 255, 0.35);
+  animation: progressFill 5s linear forwards;
+}
+
+/* ---------- BUTTONS ---------- */
+/* Explore Button */
+button.learn-more {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  font-family: inherit;
+  width: 12rem;
+  height: auto;
+}
+
+button.learn-more .circle {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: relative;
+  display: block;
+  width: 3rem;
+  height: 3rem;
+  background: #282936;
+  border-radius: 1.625rem;
+}
+
+button.learn-more .circle .icon {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+button.learn-more .circle .icon.arrow {
+  left: 0.625rem;
+  width: 1.125rem;
+  height: 0.125rem;
+}
+
+button.learn-more .circle .icon.arrow::before {
+  content: "";
+  position: absolute;
+  top: -0.29rem;
+  right: 0.0625rem;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-top: 0.125rem solid #fff;
+  border-right: 0.125rem solid #fff;
+  transform: rotate(45deg);
+}
+
+button.learn-more .button-text {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: absolute;
+  inset: 0;
+  margin-left: 1.85rem;
+  padding: 0.75rem 0;
+  color: #fff;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 0.05rem;
+}
+
+button.learn-more:hover .circle {
+  width: 100%;
+}
+button.learn-more:hover .circle .icon.arrow {
+  transform: translate(1rem, 0);
+}
+
+/* Register Button */
+/* ---------- REGISTER BUTTON ---------- */
+.primary-button {
+  font-family: 'Ropa Sans', sans-serif;
+  color: white;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 0.05rem;
+  border: 1px solid #0E1822;
+  padding: 0.8rem 2.1rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 531.28 200'%3E%3Cpolygon fill='%23FF4655' points='415.81 200 0 200 115.47 0 531.28 0 415.81 200'/%3E%3C/svg%3E");
+  background-color: #0E1822;
+  background-size: 200%;
+  background-position: 200%;
+  background-repeat: no-repeat;
+  transition: 0.3s ease-in-out;
+  position: relative;
+  z-index: 1;
+}
+
+.primary-button:hover {
+  border-color: #FF4655;
+  background-position: 40%;
+}
+
+.primary-button::before,
+.primary-button::after {
+  content: "";
+  position: absolute;
+  width: 0.25rem;
+  height: 0.25rem;
+}
+
+.primary-button::before {
+  top: -1px;
+  left: -1px;
+  background: #0E1822;
+}
+
+.primary-button::after {
+  bottom: -1px;
+  right: -1px;
+  background: #FF4655;
+}
+
+.button-borders {
+  position: relative;
+  width: fit-content;
+}
+
+.button-borders::before,
+.button-borders::after {
+  content: "";
+  position: absolute;
+  width: calc(100% + 0.5em);
+  height: 50%;
+  left: -0.3em;
+  border: 1px solid #0E1822;
+}
+
+.button-borders::before {
+  top: -0.3em;
+  border-bottom: none;
+}
+
+.button-borders::after {
+  bottom: -0.3em;
+  border-top: none;
+}
+
+
+/* ------------------------------------------- */
+/* RESPONSIVE DESIGN                 */
+/* ------------------------------------------- */
+
+/* TABLETS (Max width 1024px) */
+@media (max-width: 1024px) {
+  .home-top {
+    grid-template-columns: 1fr; /* Stack into 1 column */
+    padding: 4rem 2rem;
+    height: auto;
+    min-height: auto;
+  }
+
+  .hero-text-side {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .hero-description {
+    margin: 0 auto 2rem auto;
+  }
+
+  .event-preview {
+    height: 450px;
+  }
+}
+
+/* PHONES (Max width 768px) */
+@media (max-width: 768px) {
+  .home-top {
+    padding: 2rem 1rem;
+    gap: 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero-title {
+    font-size: 2.2rem;
+  }
+
+  .hero-description {
+    font-size: 1rem;
+  }
+
+  /* Card adjustment for Mobile */
+  .event-preview {
+    height: auto;
+    aspect-ratio: 3/4; /* Maintains a good rectangle shape on phones */
+    min-height: 400px;
+  }
+
+  .event-overlay {
+    padding: 1.5rem;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.95) 10%,
+      rgba(0, 0, 0, 0.8) 40%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+
+  /* Stack content inside the card */
+  .event-content-wrapper {
+    flex-direction: column-reverse; /* Put Title at bottom, Date at top */
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  /* Date/Time adjustments */
+  .event-info-right {
+    width: 100%;
+    flex-direction: row; /* Date and label side by side on mobile top */
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    text-align: left;
+  }
+
+  .upcoming-label {
+    margin-bottom: 0;
+  }
+
+  /* Title adjustments */
+  .event-info-left {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .event-title {
+    font-size: 1.8rem;
+  }
+
+  .event-desc {
+    -webkit-line-clamp: 4; /* Allow more text lines since we have space now */
+    max-width: 100%;
+  }
+
+  /* Footer adjustments */
+  .right-footer {
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+  }
+  
+  .button-borders {
+      margin-top: 15px;
+  }
+}
+
+/* Keyframes */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideInRight { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes progressFill { from { width: 0%; } to { width: 100%; } }

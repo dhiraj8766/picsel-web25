@@ -1,0 +1,53 @@
+/* ---------- PAGE CONTAINER ---------- */
+.team-page-container {
+  position: relative;
+  min-height: 100vh;
+  background-color: #f6cfd4;
+
+  /* GRID BACKGROUND */
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.08) 1px, transparent 1px);
+  background-size: 40px 40px;
+
+  overflow-x: hidden;
+}
+
+/* ---------- BIG WATERMARK ---------- */
+.team-page-watermark {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 22rem;
+  font-weight: 900;
+  color: rgba(0, 0, 0, 0.08);
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  white-space: nowrap;
+}
+
+/* ---------- CONTENT ABOVE WATERMARK ---------- */
+.team-page-container > *:not(.team-page-watermark) {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- LOADING ---------- */
+.loading-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-family: Inter, sans-serif;
+}
+
+/* ---------- MOBILE ---------- */
+@media (max-width: 768px) {
+  .team-page-watermark {
+    font-size: 10rem;
+  }
+}

@@ -1,0 +1,51 @@
+/* Container for the whole top area */
+.site-header {
+  position: fixed; /* Fixes it to the top of the screen */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0; /* Height 0 allows content below to flow up (like your hero image) */
+  z-index: 1000; /* Ensures it sits on top of everything */
+  padding: 20px; /* Spacing from the edges */
+  box-sizing: border-box;
+}
+
+/* 1. Logo Styling */
+.logo-container {
+  position: absolute; /* Takes it out of the flow */
+  top: 20px;
+  left: 30px;
+  z-index: 1001; /* Above everything else */
+  cursor: pointer;
+}
+
+.app-logo {
+  height: 50px; /* Adjust based on your logo shape */
+  width: auto;
+  transition: transform 0.3s ease;
+}
+
+.app-logo:hover {
+  transform: scale(1.05); /* Subtle zoom effect on hover */
+}
+
+/* 2. Navbar Wrapper */
+.navbar-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center; /* Forces your Navbar to the center */
+  align-items: flex-start;
+  /* If your Navbar component has its own top margin, you might not need padding here */
+}
+
+/* RESPONSIVE: Adjust for mobile screens */
+@media (max-width: 768px) {
+  .app-logo {
+    height: 40px; /* Smaller logo on mobile */
+  }
+  
+  .logo-container {
+    left: 15px; /* Less padding on small screens */
+    top: 15px;
+  }
+}

@@ -5,7 +5,7 @@
     border-radius: 12px;
     padding: 1.5rem;
     width: 100%; 
-    max-width: 400px; /* Limits maximum size */
+    max-width: 600px; /* Limits maximum size */
     box-sizing: border-box; 
     font-family: 'Inter', sans-serif;
     box-shadow: 0 20px 50px rgba(0,0,0,0.5);

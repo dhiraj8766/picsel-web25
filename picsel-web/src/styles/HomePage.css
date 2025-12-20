@@ -1,0 +1,27 @@
+
+.home-page {
+    width: 100%;
+    min-height: 100vh;
+    background-image: url("../assets/home-bg.jpg");
+    color: var(--text-white);
+    position: relative;
+}
+
+
+
+
+@media (max-width: 968px) {
+    .hero-content {
+        flex-direction: column;
+        padding-top: 100px;
+        text-align: left;
+    }
+    
+    .hero-title {
+        font-size: 3rem;
+    }
+    
+    .hero-image-side {
+        width: 100%;
+    }
+}

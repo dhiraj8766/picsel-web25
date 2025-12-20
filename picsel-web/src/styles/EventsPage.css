@@ -1,0 +1,229 @@
+/* --- GLOBAL PAGE STYLES --- */
+:root {
+  --bg-dark: #050505;
+  --bg-panel: #0f1115;
+  --text-main: #ffffff;
+  --text-muted: #64748b;
+  --accent-blue: #3b82f6;
+  --accent-dim: #334155;
+  --line-color: #1e293b;
+}
+
+.events-page {
+    background-color: var(--bg-dark);
+    min-height: 100vh;
+    color: var(--text-main);
+    padding: 2rem 5%;
+    font-family: 'Inter', sans-serif;
+    box-sizing: border-box;
+}
+
+/* --- HEADER --- */
+.page-header {
+    margin-bottom: 3rem;
+    padding-left: 10px;
+    border-bottom: 1px solid var(--line-color);
+    padding-bottom: 2rem;
+}
+
+.sub-header {
+    color: var(--accent-blue);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.main-header {
+    font-family: 'Playfair Display', serif; /* Ensure you import this font or use a fallback */
+    font-size: 3rem;
+    margin: 0;
+    line-height: 1.1;
+}
+
+/* --- LAYOUT (Split Screen) --- */
+.events-layout {
+    display: flex;
+    gap: 4rem; /* Space between list and calendar */
+    height: calc(100vh - 250px); /* Fill remaining screen height */
+    min-height: 500px;
+}
+
+/* LEFT SIDE: Scrollable Box */
+.timeline-container-box {
+    flex: 1; /* Takes up available space */
+    overflow-y: auto; /* Enables Scroll */
+    padding-right: 1rem;
+    padding-left: 1rem;
+    
+    /* Scrollbar Styling */
+    scrollbar-width: thin;
+    scrollbar-color: #333 var(--bg-dark);
+}
+
+.timeline-container-box::-webkit-scrollbar {
+    width: 6px;
+}
+.timeline-container-box::-webkit-scrollbar-track {
+    background: var(--bg-dark);
+}
+.timeline-container-box::-webkit-scrollbar-thumb {
+    background-color: #333;
+    border-radius: 4px;
+}
+
+.calendar-section {
+    width: 400px; /* Fixed width for calendar */
+    flex-shrink: 0; 
+}
+
+.sticky-wrapper {
+    position: sticky;
+    top: 20px;
+}
+
+.timeline-section {
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 3rem;
+    border-left: 2px solid var(--line-color); /* The Line */
+    margin-left: 10px;
+}
+
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 2.5rem;
+    padding-left: 1rem;
+    transition: transform 0.2s ease;
+}
+
+.timeline-item:hover {
+    transform: translateX(5px);
+}
+
+/* The Dot */
+.timeline-dot {
+    position: absolute;
+    left: -2.55rem; /* Align with vertical line */
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--bg-dark); /* Inner hole */
+    border: 2px solid var(--accent-blue);
+    z-index: 2;
+}
+
+/* Completed Events Styling */
+.timeline-item.completed .timeline-dot {
+    border-color: var(--accent-dim);
+    background-color: var(--accent-dim);
+}
+
+.timeline-item.completed .timeline-content {
+    opacity: 0.5;
+}
+
+/* Content Text */
+.timeline-content {
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    padding-bottom: 1rem;
+}
+
+.time-badge {
+    font-size: 0.8rem;
+    font-family: monospace;
+    color: var(--accent-blue);
+    display: block;
+    margin-bottom: 0.4rem;
+}
+
+.timeline-item.completed .time-badge {
+    color: var(--text-muted);
+}
+
+.event-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+    color: #fff;
+}
+
+.event-meta {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 0.8rem;
+}
+
+.event-desc {
+    font-size: 0.9rem;
+    color: #999;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.loading-text, .no-events-text {
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 2rem;
+}
+
+/* Responsive */
+/* --- MOBILE RESPONSIVE FIX --- */
+@media (max-width: 900px) {
+    
+    /* 1. Stack Layout Vertically */
+    .events-layout {
+        display: flex;
+        flex-direction: column; 
+        gap: 2rem;
+        height: auto !important; /* Allow page to grow, disable fixed desktop height */
+        min-height: 0;
+    }
+    
+    /* 2. Calendar goes first or second (optional) */
+    .calendar-section {
+        width: 100%;
+        order: 1; /* Calendar on top */
+        margin-bottom: 1rem;
+    }
+
+    /* 3. THE FIXED SCROLLABLE BOX */
+    .timeline-container-box {
+        /* FORCE fixed height so scrollbar appears */
+        height: 500px !important; 
+        max-height: 60vh; /* Optional: adapts to small screens */
+        
+        /* Enable Scrolling */
+        overflow-y: scroll !important; 
+        
+        /* Visual Box Styling */
+        display: block;
+        background-color: rgba(15, 17, 21, 0.6); /* Slightly darker background */
+        border: 1px solid var(--line-color);
+        border-radius: 12px;
+        padding: 1.5rem 1rem; /* Padding inside the box */
+        
+        /* Smooth scrolling for mobile */
+        -webkit-overflow-scrolling: touch; 
+        
+        order: 2; /* List below calendar */
+    }
+
+    /* Fix the timeline line alignment inside the box */
+    .timeline-section {
+        margin-left: 0;
+        padding-left: 1rem;
+        border-left: 2px solid var(--line-color);
+    }
+    
+    /* Ensure header doesn't overlap */
+    .page-header {
+        padding-left: 0;
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+}

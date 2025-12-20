@@ -26,6 +26,8 @@
     justify-content: space-between;
     padding: 20px;
 }
+
+
 .nav-right {
     display: flex; align-items: center; gap: 15px;
 }
@@ -201,6 +203,9 @@
     display: block; color: #9a9a9a; font-size: 0.85rem; line-height: 1.4;
 }
 
+
+
+
 /* --- DESKTOP STYLES --- */
 @media (min-width: 769px) {
     .navbar-header { top: 25px; left: 50%; right: auto; transform: translateX(-50%); width: auto; }
@@ -214,6 +219,8 @@
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
         transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
     }
+
+
     .hamburger-btn, .nav-mobile-menu, .nav-mobile-backdrop { display: none; } /* Hide mobile elements on desktop */
     .nav-desktop { display: flex; align-items: center; }
     .menu-toggle-btn {
@@ -246,4 +253,10 @@
     }
     .nav-close-btn:hover { color: white; }
     .dropdown-panel { display: block; }
+}
+
+@media (max-width: 768px) {
+    .nav-logo {
+        visibility: hidden;
+    }
 }

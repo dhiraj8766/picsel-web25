@@ -1,47 +1,76 @@
-/* ... Keep previous styles ... */
+/* --- COMPACT CARD STYLES --- */
 
-/* Header row to fit the "Completed" badge */
-.header-row {
+/* Tighter Timeline Item Spacing */
+.timeline-item {
+    position: relative;
+    margin-bottom: 1.5rem; /* Reduced from 2.5rem */
+    padding-left: 1rem;
+    transition: transform 0.2s ease;
+}
+
+/* Flex layout for side-by-side Date and Title */
+.timeline-content.compact {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 15px; /* Space between date and title */
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
-/* Status Badge */
-.status-badge {
-    font-size: 0.65rem;
-    background: #333;
-    color: #888;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-weight: 700;
-    letter-spacing: 1px;
+.event-date-compact {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: var(--accent-blue);
+    white-space: nowrap; /* Prevents date from breaking lines */
+    min-width: 100px;
 }
 
-/* --- THE GREYED OUT LOOK --- */
-.event-card.past-event {
-    opacity: 0.5; /* Fade it out */
-    border-color: #1a1a1a;
-    background: transparent;
-    filter: grayscale(100%); /* Remove all color (makes blue text grey) */
+.timeline-item.completed .event-date-compact {
+    color: var(--text-muted);
 }
 
-.event-card.past-event:hover {
-    /* Disable the hover effects for past events */
-    transform: none;
-    background: transparent;
-    border-color: #1a1a1a;
-    opacity: 0.7; /* Slight brighten on hover so it's readable */
+.event-title-compact {
+    font-size: 1rem; /* Smaller font for compact look */
+    font-weight: 500;
+    margin: 0;
+    color: #e2e8f0;
+    line-height: 1.4;
 }
 
-/* Change the dot color for past events */
-.event-card.past-event::before {
-    background: #333;
-    border-color: #222;
+/* Adjust the dot position for the compact height */
+.timeline-dot {
+    top: 4px; /* Move dot up slightly to align with text */
 }
 
-.event-card.past-event:hover::before {
-    box-shadow: none;
-    background: #333;
-    border-color: #222;
+/* --- MOBILE SCROLL FIX --- */
+
+/* On mobile, we want the list to sit BELOW the calendar (or above, depending on preference),
+   but crucially, we want the list itself to be scrollable within a fixed box.
+*/
+@media (max-width: 900px) {
+    .events-layout {
+        flex-direction: column; /* Stack vertically */
+        height: auto;
+        gap: 2rem;
+    }
+    
+    .calendar-section {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    /* FORCE SCROLL ON MOBILE */
+    .timeline-container-box {
+        height: 400px; /* Fixed height is required for overflow to work */
+        overflow-y: auto; /* Force vertical scroll */
+        border: 1px solid var(--line-color);
+        border-radius: 8px;
+        padding: 1.5rem;
+        background: rgba(255, 255, 255, 0.02);
+    }
+    
+    .timeline-section {
+        margin-left: 0;
+        border-left: 2px solid var(--line-color);
+    }
 }
